@@ -57,6 +57,7 @@ package zlm_webhook
 //	    "vhost": "__defaultVhost__"
 //	}
 
+// TODO: fix me
 type OnStreamChangedRequest struct {
 	Regist           bool       `json:"regist"`
 	AliveSecond      int        `json:"aliveSecond"`
