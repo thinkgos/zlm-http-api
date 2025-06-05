@@ -1,6 +1,6 @@
 package zlm_webhook
 
-//* 服务器定时上报时间, 上报间隔可配置, 默认10s上报一次
+//* 服务器定时上报, 上报间隔可配置, 默认10s上报一次
 // https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html#_16%E3%80%81on-server-keepalive
 
 type OnServerKeepaliveRequest struct {

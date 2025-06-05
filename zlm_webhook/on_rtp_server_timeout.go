@@ -9,7 +9,7 @@ type OnRtpServerTimeoutRequest struct {
 	ReUsePort     bool   `json:"re_use_port"`   // openRtpServer 输入的参数
 	Ssrc          uint32 `json:"ssrc"`          // openRtpServer 输入的参数
 	StreamId      string `json:"stream_id"`     // openRtpServer 输入的参数
-	TCPMode       int    `json:"tcp_mode"`      // openRtpServer 输入的参数
+	TcpMode       int    `json:"tcp_mode"`      // openRtpServer 输入的参数
 
 }
 type OnRtpServerTimeoutReply = DefaultReply
