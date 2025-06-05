@@ -1,11 +1,14 @@
 package zlm_webhook
 
+//* 调用openRtpServer接口, rtp server长时间未收到数据, 执行此 web hook, 对回复不敏感.
+// https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html#_17%E3%80%81on-rtp-server-timeout
+
 type OnRtpServerTimeoutRequest struct {
-	MediaServerID string `json:"mediaServerId"` // 服务器id, 通过配置文件设置
+	MediaServerId string `json:"mediaServerId"` // 服务器id, 通过配置文件设置
 	LocalPort     int    `json:"local_port"`    // openRtpServer 输入的参数
 	ReUsePort     bool   `json:"re_use_port"`   // openRtpServer 输入的参数
-	SSRC          uint32 `json:"ssrc"`          // openRtpServer 输入的参数
-	StreamID      string `json:"stream_id"`     // openRtpServer 输入的参数
+	Ssrc          uint32 `json:"ssrc"`          // openRtpServer 输入的参数
+	StreamId      string `json:"stream_id"`     // openRtpServer 输入的参数
 	TCPMode       int    `json:"tcp_mode"`      // openRtpServer 输入的参数
 
 }

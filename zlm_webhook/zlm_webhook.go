@@ -1,6 +1,8 @@
 package zlm_webhook
 
-//* doc: https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html
+import "context"
+
+// doc: https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html
 
 const (
 	// url path prefix
@@ -21,3 +23,36 @@ const (
 	UrlPath_OnServerKeepalive  = "/on_server_keepalive"
 	UrlPath_OnRtpServerTimeout = "/on_rtp_server_timeout"
 )
+
+type Webhook interface {
+	// 流量统计事件
+	OnFlowReport(ctx context.Context, req *OnFlowReportRequest) (*OnFlowReportReply, error)
+	// 访问http文件服务器上hls之外的文件时触发
+	OnHttpAccess(ctx context.Context, req *OnHttpAccessRequest) (*OnHttpAccessReply, error)
+	// 播放器鉴权事件
+	OnPlay(ctx context.Context, req *OnPlayRequest) (*OnPlayReply, error)
+	// rtsp/rtmp/rtp 推流鉴权事件
+	OnPublish(ctx context.Context, req *OnPublishRequest) (*OnPublishReply, error)
+	// 录制mp4完成后通知事件
+	OnRecordMp4(ctx context.Context, req *OnRecordMp4Request) (*OnRecordMp4Reply, error)
+	// 调用openRtpServer接口, rtp server长时间未收到数据, 执行此 web hook, 对回复不敏感.
+	OnRtpServerTimeout(ctx context.Context, req *OnRtpServerTimeoutRequest) (*OnRtpServerTimeoutReply, error)
+	// rtsp专用的鉴权事件
+	// 先触发on_rtsp_realm事件然后才会触发on_rtsp_auth事件。
+	OnRtspAuth(ctx context.Context, req *OnRtspAuthRequest) (*OnRtspAuthReply, error)
+	// 该rtsp流是否开启rtsp专用方式的鉴权事件
+	// 开启后才会触发on_rtsp_auth事件
+	OnRtspRealm(ctx context.Context, req *OnRtspRealmRequest) (*OnRtspRealmReply, error)
+	// 服务器定时上报时间, 上报间隔可配置, 默认10s上报一次
+	OnServerKeepalive(ctx context.Context, req *OnServerKeepaliveRequest) (*OnServerKeepaliveReply, error)
+	// 服务器启动事件
+	OnServerStarted(ctx context.Context, req *OnServerStartedRequest) (*OnServerStartedReply, error)
+	// * shell登录鉴权, telnet调试方式
+	OnShellLogin(ctx context.Context, req *OnShellLoginRequest) (*OnShellLoginReply, error)
+	// rtsp/rtmp 流注册或注销时触发此事件; 此事件对回复不敏感.
+	OnStreamChanged(ctx context.Context, req *OnStreamChangedRequest) (*OnStreamChangedReply, error)
+	// 流无人观看时事件
+	OnStreamNoneReader(ctx context.Context, req *OnStreamNoneReaderRequest) (*OnStreamNoneReaderReply, error)
+	// 流未找到事件
+	OnStreamNotFound(ctx context.Context, req *OnStreamNotFoundRequest) (*OnStreamNotFoundReply, error)
+}

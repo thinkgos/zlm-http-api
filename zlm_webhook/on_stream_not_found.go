@@ -1,6 +1,6 @@
 package zlm_webhook
 
-// * 流未找到事件
+//* 流未找到事件
 // https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html#_14%E3%80%81on-stream-not-found
 //
 // 用户可以在此事件触发时, 立即去拉流, 这样可以实现按需拉流; 此事件对回复不敏感.

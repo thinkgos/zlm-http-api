@@ -17,7 +17,7 @@ type OnRtspRealmRequest struct {
 	Vhost         string `json:"vhost"`         // 流虚拟主机
 }
 
-type OnRstpRealmReply struct {
+type OnRtspRealmReply struct {
 	Code  int    `json:"code"`  // 请固定返回 0
 	Realm string `json:"realm"` // 该rtsp流是否需要rtsp专有鉴权, 空字符串代码不需要鉴权
 }
