@@ -173,10 +173,10 @@ type SetServerConfigReply struct {
 	Changed int `json:"changed"` // 配置项变更个数
 }
 
-func (c *ZlmClient) SetServerConfig(ctx context.Context, req *SetServerConfigRequest) (*SetServerConfigReply, error) {
+func (c *ZlmClient) SetServerConfig(ctx context.Context, req *SetServerConfigRequest, opts ...CallOption) (*SetServerConfigReply, error) {
 	var resp SetServerConfigReply
 
-	err := c.Post(ctx, "/index/api/setServerConfig", req, &resp)
+	err := c.Post(ctx, "/index/api/setServerConfig", req, &resp, opts...)
 	if err != nil {
 		return nil, err
 	}

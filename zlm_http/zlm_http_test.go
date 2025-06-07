@@ -8,7 +8,8 @@ const (
 
 var client = func() *ZlmClient {
 	c := NewClient(WithCallOption(WithCoNoAuth()))
-	c.Deref().SetBaseURL(baseUrl).
+	c.Deref().
+		SetBaseURL(baseUrl).
 		SetQueryParam("secret", secret)
 	return c
 }()

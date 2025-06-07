@@ -37,10 +37,10 @@ type MediaEntry struct {
 	Tracks           []zlm_def.Tracks    `json:"tracks"`           // 追踪
 }
 
-func (c *ZlmClient) GetMediaList(ctx context.Context, req *GetMediaListRequest) (*GetMediaListReply, error) {
+func (c *ZlmClient) GetMediaList(ctx context.Context, req *GetMediaListRequest, opts ...CallOption) (*GetMediaListReply, error) {
 	var resp GetMediaListReply
 
-	err := c.Get(ctx, "/index/api/getMediaList", req, &resp)
+	err := c.Get(ctx, "/index/api/getMediaList", req, &resp, opts...)
 	if err != nil {
 		return nil, err
 	}

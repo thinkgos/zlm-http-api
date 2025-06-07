@@ -10,10 +10,10 @@ type RestartServerReply struct {
 	BaseResult
 }
 
-func (c *ZlmClient) RestartServer(ctx context.Context, req *RestartServerRequest) (*RestartServerReply, error) {
+func (c *ZlmClient) RestartServer(ctx context.Context, req *RestartServerRequest, opts ...CallOption) (*RestartServerReply, error) {
 	var resp RestartServerReply
 
-	err := c.Post(ctx, "/index/api/restartServer", req, &resp)
+	err := c.Post(ctx, "/index/api/restartServer", req, &resp, opts...)
 	if err != nil {
 		return nil, err
 	}

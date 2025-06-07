@@ -15,10 +15,10 @@ type ThreadsLoadEntry struct {
 	Load  int `json:"load"`  // 该线程负载, 0-100
 }
 
-func (c *ZlmClient) GetThreadsLoad(ctx context.Context, req *GetThreadsLoadRequest) (*GetThreadsLoadReply, error) {
+func (c *ZlmClient) GetThreadsLoad(ctx context.Context, req *GetThreadsLoadRequest, opts ...CallOption) (*GetThreadsLoadReply, error) {
 	var resp GetThreadsLoadReply
 
-	err := c.Get(ctx, "/index/api/getThreadsLoad", req, &resp)
+	err := c.Get(ctx, "/index/api/getThreadsLoad", req, &resp, opts...)
 	if err != nil {
 		return nil, err
 	}

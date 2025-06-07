@@ -11,10 +11,10 @@ type GetApiListReply struct {
 	Data []string `json:"data"`
 }
 
-func (c *ZlmClient) GetApiList(ctx context.Context, req *GetApiListRequest) (*GetApiListReply, error) {
+func (c *ZlmClient) GetApiList(ctx context.Context, req *GetApiListRequest, opts ...CallOption) (*GetApiListReply, error) {
 	var resp GetApiListReply
 
-	err := c.Get(ctx, "/index/api/getApiList", req, &resp)
+	err := c.Get(ctx, "/index/api/getApiList", req, &resp, opts...)
 	if err != nil {
 		return nil, err
 	}

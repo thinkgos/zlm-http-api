@@ -12,8 +12,10 @@ type CallSettings struct {
 	accept string
 	// custom header
 	header http.Header
-	// Path overwrite api call
-	Path string
+	// baseUrl overwrite api call
+	baseUrl string
+	// path overwrite api call
+	path string
 	// no auth
 	noAuth bool
 }
@@ -36,10 +38,17 @@ func WithCoAccept(accept string) CallOption {
 	}
 }
 
+// WithCoBaseUrl
+func WithCoBaseUrl(baseUrl string) CallOption {
+	return func(cs *CallSettings) {
+		cs.baseUrl = baseUrl
+	}
+}
+
 // WithCoPath
 func WithCoPath(path string) CallOption {
 	return func(cs *CallSettings) {
-		cs.Path = path
+		cs.path = path
 	}
 }
 

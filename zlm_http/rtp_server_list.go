@@ -8,17 +8,17 @@ import "context"
 type ListRtpServerRequest struct{}
 type ListRtpServerReply struct {
 	BaseResult
-	Data []*RtpServerEntry `json:"data"` 
+	Data []*RtpServerEntry `json:"data"`
 }
 type RtpServerEntry struct {
 	Port     int    `json:"port"`      // 绑定的端口号
 	StreamId string `json:"stream_id"` //绑定的流id
 }
 
-func (c *ZlmClient) ListRtpServer(ctx context.Context, req *ListRtpServerRequest) (*ListRtpServerReply, error) {
+func (c *ZlmClient) ListRtpServer(ctx context.Context, req *ListRtpServerRequest, opts ...CallOption) (*ListRtpServerReply, error) {
 	var resp ListRtpServerReply
 
-	err := c.Get(ctx, "/index/api/listRtpServer", req, &resp)
+	err := c.Get(ctx, "/index/api/listRtpServer", req, &resp, opts...)
 	if err != nil {
 		return nil, err
 	}

@@ -15,10 +15,10 @@ type OpenRtpServerReply struct {
 	Port int `json:"port"` // 接收端口, 方便获取随机端口号
 }
 
-func (c *ZlmClient) OpenRtpServer(ctx context.Context, req *OpenRtpServerRequest) (*OpenRtpServerReply, error) {
+func (c *ZlmClient) OpenRtpServer(ctx context.Context, req *OpenRtpServerRequest, opts ...CallOption) (*OpenRtpServerReply, error) {
 	var resp OpenRtpServerReply
 
-	err := c.Post(ctx, "/index/api/openRtpServer", req, &resp)
+	err := c.Post(ctx, "/index/api/openRtpServer", req, &resp, opts...)
 	if err != nil {
 		return nil, err
 	}

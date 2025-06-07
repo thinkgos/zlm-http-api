@@ -85,7 +85,7 @@ func (c *ZlmClient) CallSetting(path string, cos ...CallOption) *CallSettings {
 	cs := &CallSettings{
 		contentType: "application/json",
 		accept:      "application/json",
-		Path:        path,
+		path:        path,
 		header:      make(http.Header),
 		noAuth:      false,
 	}
@@ -132,7 +132,11 @@ func (c *ZlmClient) Invoke(ctx context.Context, method, path string, in, out any
 			r.Header.Add(k, v)
 		}
 	}
-	resp, err := r.Execute(method, c.cc.BaseURL()+path)
+	url := path
+	if settings.baseUrl != "" {
+		url = settings.baseUrl + url
+	}
+	resp, err := r.Execute(method, url)
 	if err != nil {
 		return err
 	}
@@ -153,15 +157,15 @@ func hasRequestBody(method string) bool {
 }
 
 func (c *ZlmClient) Execute(ctx context.Context, method, path string, req, resp any, opts ...CallOption) error {
-	var r any
+	var in any
 
 	settings := c.CallSetting(path, opts...)
 	hasBody := hasRequestBody(method)
 	if hasBody {
-		r = req
+		in = req
 	}
-	url := c.EncodeURL(settings.Path, req, !hasBody)
-	return c.Invoke(ctx, method, url, r, resp, settings)
+	url := c.EncodeURL(settings.path, req, !hasBody)
+	return c.Invoke(ctx, method, url, in, resp, settings)
 }
 
 // Get method does GET HTTP request. It's defined in section 4.3.1 of RFC7231.

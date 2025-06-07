@@ -177,10 +177,10 @@ type ServerConfigData struct {
 	Srt_TimeoutSec                      string `json:"srt.timeoutSec"`
 }
 
-func (c *ZlmClient) GetServerConfig(ctx context.Context, req *GetServerConfigRequest) (*GetServerConfigReply, error) {
+func (c *ZlmClient) GetServerConfig(ctx context.Context, req *GetServerConfigRequest, opts ...CallOption) (*GetServerConfigReply, error) {
 	var resp GetServerConfigReply
 
-	err := c.Get(ctx, "/index/api/getServerConfig", req, &resp)
+	err := c.Get(ctx, "/index/api/getServerConfig", req, &resp, opts...)
 	if err != nil {
 		return nil, err
 	}

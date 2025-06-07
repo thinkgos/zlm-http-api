@@ -20,10 +20,10 @@ type CloseStreamsReply struct {
 	CountClosed int `json:"count_closed"` // 被关闭的流个数, 可能小于count_hit
 }
 
-func (c *ZlmClient) CloseStreams(ctx context.Context, req *CloseStreamsRequest) (*CloseStreamsReply, error) {
+func (c *ZlmClient) CloseStreams(ctx context.Context, req *CloseStreamsRequest, opts ...CallOption) (*CloseStreamsReply, error) {
 	var resp CloseStreamsReply
 
-	err := c.Post(ctx, "/index/api/close_streams", req, &resp)
+	err := c.Post(ctx, "/index/api/close_streams", req, &resp, opts...)
 	if err != nil {
 		return nil, err
 	}
