@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 
@@ -68,10 +67,14 @@ func NewClient(opts ...ClientOption) *ZlmClient {
 		opt(c)
 	}
 	c.cc.AddResponseMiddleware(func(c *resty.Client, r *resty.Response) error {
+		// 文件下载, 略过解析body
+		if cs, ok := FromValueCallOption(r.Request.Context()); ok && cs.isFileDownload {
+			return nil
+		}
 		if r.RawResponse != nil {
 			body := r.RawResponse.Body
 			defer body.Close()
-			fmt.Println(string(r.Bytes()))
+			// fmt.Println(string(r.Bytes()))
 			r.RawResponse.Body = io.NopCloser(bytes.NewBuffer(r.Bytes()))
 		}
 		return nil
@@ -217,4 +220,65 @@ func (c *ZlmClient) EncodeQuery(v any) (string, error) {
 		return "", err
 	}
 	return vv.Encode(), nil
+}
+
+func (c *ZlmClient) DownloadFile(ctx context.Context, method, path string, req any, filename string, opts ...CallOption) error {
+	var in any
+
+	settings := c.CallSetting(path, opts...)
+	hasBody := hasRequestBody(method)
+	if hasBody {
+		in = req
+	}
+	path = c.EncodeURL(settings.path, req, !hasBody)
+	if c.validate != nil {
+		if err := c.validate(in); err != nil {
+			return err
+		}
+	}
+	ctx = WithValueCallOption(ctx, settings)
+	r := c.cc.R().SetContext(ctx).
+		SetOutputFileName(filename)
+	if in != nil {
+		reqBody, err := c.codec.Encode(settings.contentType, in)
+		if err != nil {
+			return err
+		}
+		r = r.SetBody(reqBody)
+	}
+	if !settings.noAuth {
+		if c.tokenSource == nil {
+			return errors.New("transport: token source should be not nil")
+		}
+		tk, err := c.tokenSource.Token()
+		if err != nil {
+			return err
+		}
+		r.SetHeader("Authorization", tk.Type()+" "+tk.AccessToken)
+	}
+	r.SetHeader("Content-Type", settings.contentType)
+	r.SetHeader("Accept", settings.accept)
+	for k, vs := range settings.header {
+		for _, v := range vs {
+			r.Header.Add(k, v)
+		}
+	}
+	url := path
+	if settings.baseUrl != "" {
+		url = settings.baseUrl + url
+	}
+
+	resp, err := r.Execute(method, url)
+	if err != nil {
+		return err
+	}
+	if resp.IsError() {
+		return &ErrorReply{
+			Code:   resp.StatusCode(),
+			Body:   resp.Bytes(),
+			Header: resp.Header(),
+		}
+	}
+	defer resp.RawResponse.Body.Close()
+	return nil
 }

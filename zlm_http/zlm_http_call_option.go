@@ -18,6 +18,8 @@ type CallSettings struct {
 	path string
 	// no auth
 	noAuth bool
+	// 是否是文件下载
+	isFileDownload bool
 }
 
 // CallOption is an option used by Invoke to control behaviors of RPC calls.
@@ -63,5 +65,12 @@ func WithCoHeader(k, v string) CallOption {
 func WithCoNoAuth() CallOption {
 	return func(cs *CallSettings) {
 		cs.noAuth = true
+	}
+}
+
+// WithFileDownload
+func WithFileDownload() CallOption {
+	return func(cs *CallSettings) {
+		cs.isFileDownload = true
 	}
 }
