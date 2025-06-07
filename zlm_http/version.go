@@ -11,9 +11,9 @@ type VersionReply struct {
 	Data *VersionData `json:"data"`
 }
 type VersionData struct {
-	BranchName string `json:"branchName"`
-	BuildTime  string `json:"buildTime"`
-	CommitHash string `json:"commitHash"`
+	BranchName string `json:"branchName"` // 分支
+	BuildTime  string `json:"buildTime"`  // 编译时间
+	CommitHash string `json:"commitHash"` // commit id
 }
 
 func (c *ZlmClient) Version(ctx context.Context, req *VersionRequest) (*VersionReply, error) {
