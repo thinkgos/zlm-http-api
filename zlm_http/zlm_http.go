@@ -143,6 +143,7 @@ func (c *ZlmClient) Invoke(ctx context.Context, method, path string, in, out any
 	if err != nil {
 		return err
 	}
+	defer resp.RawResponse.Body.Close()
 	if resp.IsError() {
 		return &ErrorReply{
 			Code:   resp.StatusCode(),
@@ -150,7 +151,6 @@ func (c *ZlmClient) Invoke(ctx context.Context, method, path string, in, out any
 			Header: resp.Header(),
 		}
 	}
-	defer resp.RawResponse.Body.Close()
 	return c.codec.InboundForResponse(resp.RawResponse).NewDecoder(resp.RawResponse.Body).Decode(out)
 }
 
@@ -272,6 +272,7 @@ func (c *ZlmClient) DownloadFile(ctx context.Context, method, path string, req a
 	if err != nil {
 		return err
 	}
+	defer resp.RawResponse.Body.Close()
 	if resp.IsError() {
 		return &ErrorReply{
 			Code:   resp.StatusCode(),
@@ -279,6 +280,5 @@ func (c *ZlmClient) DownloadFile(ctx context.Context, method, path string, req a
 			Header: resp.Header(),
 		}
 	}
-	defer resp.RawResponse.Body.Close()
 	return nil
 }
