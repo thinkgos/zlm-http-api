@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 
@@ -70,7 +71,7 @@ func NewClient(opts ...ClientOption) *ZlmClient {
 		if r.RawResponse != nil {
 			body := r.RawResponse.Body
 			defer body.Close()
-			// fmt.Println(string(r.Bytes()))
+			fmt.Println(string(r.Bytes()))
 			r.RawResponse.Body = io.NopCloser(bytes.NewBuffer(r.Bytes()))
 		}
 		return nil

@@ -1,21 +1,25 @@
 package zlm_http
 
+import (
+	"context"
+)
+
 //* 获取服务器配置
 // https://docs.zlmediakit.com/zh/guide/media_server/restful_api.html#_3%E3%80%81-index-api-getserverconfig
 
 type GetServerConfigRequest struct{}
 type GetServerConfigReply struct {
 	BaseResult
-	Data []GetServerConfigData `json:"data"`
+	Data []ServerConfigData `json:"data"`
 }
 
-type GetServerConfigData struct {
+type ServerConfigData struct {
 	Api_ApiDebug                        string `json:"api.apiDebug"`
 	Api_DefaultSnap                     string `json:"api.defaultSnap"`
 	Api_DownloadRoot                    string `json:"api.downloadRoot"`
 	Api_Secret                          string `json:"api.secret"`
 	Api_SnapRoot                        string `json:"api.snapRoot"`
-	Cluster_OriginURL                   string `json:"cluster.origin_url"`
+	Cluster_OriginUrl                   string `json:"cluster.origin_url"`
 	Cluster_RetryCount                  string `json:"cluster.retry_count"`
 	Cluster_TimeoutSec                  string `json:"cluster.timeout_sec"`
 	Ffmpeg_Bin                          string `json:"ffmpeg.bin"`
@@ -29,11 +33,11 @@ type GetServerConfigData struct {
 	General_EnableFfmpegLog             string `json:"general.enable_ffmpeg_log"`
 	General_FlowThreshold               string `json:"general.flowThreshold"`
 	General_ListenIP                    string `json:"general.listen_ip"`
-	General_MaxStreamWaitMS             string `json:"general.maxStreamWaitMS"`
-	General_MediaServerID               string `json:"general.mediaServerId"`
-	General_MergeWriteMS                string `json:"general.mergeWriteMS"`
+	General_MaxStreamWaitMs             string `json:"general.maxStreamWaitMS"`
+	General_MediaServerId               string `json:"general.mediaServerId"`
+	General_MergeWriteMs                string `json:"general.mergeWriteMS"`
 	General_ResetWhenRePlay             string `json:"general.resetWhenRePlay"`
-	General_StreamNoneReaderDelayMS     string `json:"general.streamNoneReaderDelayMS"`
+	General_StreamNoneReaderDelayMs     string `json:"general.streamNoneReaderDelayMS"`
 	General_UnreadyFrameCache           string `json:"general.unready_frame_cache"`
 	General_WaitAddTrackMs              string `json:"general.wait_add_track_ms"`
 	General_WaitAudioTrackDataMs        string `json:"general.wait_audio_track_data_ms"`
@@ -50,7 +54,7 @@ type GetServerConfigData struct {
 	Hook_AliveInterval                  string `json:"hook.alive_interval"`
 	Hook_Enable                         string `json:"hook.enable"`
 	Hook_OnFlowReport                   string `json:"hook.on_flow_report"`
-	Hook_OnHTTPAccess                   string `json:"hook.on_http_access"`
+	Hook_OnHttpAccess                   string `json:"hook.on_http_access"`
 	Hook_OnPlay                         string `json:"hook.on_play"`
 	Hook_OnPublish                      string `json:"hook.on_publish"`
 	Hook_OnRecordMp4                    string `json:"hook.on_record_mp4"`
@@ -86,7 +90,7 @@ type GetServerConfigData struct {
 	Http_VirtualPath                    string `json:"http.virtualPath"`
 	Multicast_AddrMax                   string `json:"multicast.addrMax"`
 	Multicast_AddrMin                   string `json:"multicast.addrMin"`
-	Multicast_UdpTTL                    string `json:"multicast.udpTTL"`
+	Multicast_UdpTtl                    string `json:"multicast.udpTTL"`
 	Protocol_AddMuteAudio               string `json:"protocol.add_mute_audio"`
 	Protocol_AutoClose                  string `json:"protocol.auto_close"`
 	Protocol_ContinuePushMs             string `json:"protocol.continue_push_ms"`
@@ -115,7 +119,8 @@ type GetServerConfigData struct {
 	Record_FileBufSize                  string `json:"record.fileBufSize"`
 	Record_FileRepeat                   string `json:"record.fileRepeat"`
 	Record_SampleMS                     string `json:"record.sampleMS"`
-	RtcDatachannelEcho                  string `json:"rtc.datachannel_echo"`
+	Rtc_Bfilter                         string `json:"rtc.bfilter"`
+	Rtc_DatachannelEcho                 string `json:"rtc.datachannel_echo"`
 	Rtc_ExternIP                        string `json:"rtc.externIP"`
 	Rtc_MaxRtpCacheMS                   string `json:"rtc.maxRtpCacheMS"`
 	Rtc_MaxRtpCacheSize                 string `json:"rtc.maxRtpCacheSize"`
@@ -166,7 +171,18 @@ type GetServerConfigData struct {
 	Shell_MaxReqSize                    string `json:"shell.maxReqSize"`
 	Shell_Port                          string `json:"shell.port"`
 	Srt_LatencyMul                      string `json:"srt.latencyMul"`
+	Srt_PassPhrase                      string `json:"srt.passPhrase"`
 	Srt_PktBufSize                      string `json:"srt.pktBufSize"`
 	Srt_Port                            string `json:"srt.port"`
 	Srt_TimeoutSec                      string `json:"srt.timeoutSec"`
+}
+
+func (c *ZlmClient) GetServerConfig(ctx context.Context, req *GetServerConfigRequest) (*GetServerConfigReply, error) {
+	var resp GetServerConfigReply
+
+	err := c.Get(ctx, "/index/api/getServerConfig", req, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return &resp, nil
 }

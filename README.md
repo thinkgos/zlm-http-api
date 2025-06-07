@@ -12,6 +12,9 @@
 - [ ] 7. `/index/api/close_stream` 关闭流(已过期, 请使用close_streams接口替换)
 - [ ] 8. `/index/api/close_streams` 关闭流(目前所有类型的流都支持关闭)
 - [x] 23. `/index/api/getSnap` 获取截图或生成实时截图并返回
+- [ ] 24. `/index/api/openRtpServer` 创建GB28181 RTP 接收端口, 如果该端口接收数据超时, 则会自动被回收(不用调用 closeRtpServer 接口)
+- [ ] 25. `/index/api/closeRtpServer` 关闭 GB28181 RTP接收端口
+- [ ] 26. `/index/api/listRtpServer` 获取 openRtpServer 接口创建的所有 RTP 服务器
 - [x] 32. `index/api/version` 获取版本信息, 如分支, commit id, 编译时间
 
 ## WebHook api
