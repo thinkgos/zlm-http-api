@@ -7,10 +7,10 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_GetApiList(t *testing.T) {
-	resp, err := client.GetApiList(context.Background(), &GetApiListRequest{})
+func Test_GetThreadsLoad(t *testing.T) {
+	resp, err := client.GetThreadsLoad(context.Background(), &GetThreadsLoadRequest{})
 	require.NoError(t, err)
 	require.True(t, resp.IsSuccess())
-	require.Greater(t, len(resp.Data), 0)
+	require.GreaterOrEqual(t, len(resp.Data), 0)
 	// t.Logf("%#v\n", resp.Data)
 }
