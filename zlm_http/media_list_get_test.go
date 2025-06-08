@@ -10,7 +10,6 @@ import (
 func Test_GetMediaList(t *testing.T) {
 	resp, err := client.GetMediaList(context.Background(), &GetMediaListRequest{})
 	require.NoError(t, err)
-	require.True(t, resp.IsSuccess())
 	require.GreaterOrEqual(t, len(resp.Data), 0)
 	// t.Logf("%#v\n", resp.Data)
 }

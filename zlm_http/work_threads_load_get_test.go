@@ -10,7 +10,6 @@ import (
 func Test_GetWorkThreadsLoad(t *testing.T) {
 	resp, err := client.GetWorkThreadsLoad(context.Background(), &GetWorkThreadsLoadRequest{})
 	require.NoError(t, err)
-	require.True(t, resp.IsSuccess())
 	require.GreaterOrEqual(t, len(resp.Data), 0)
 	// t.Logf("%#v\n", resp.Data)
 }

@@ -21,7 +21,7 @@ var noRequestBodyMethods = map[string]struct{}{
 	http.MethodTrace:   {},
 }
 
-type ZlmClient struct {
+type Client struct {
 	cc    *resty.Client
 	codec *encoding.Encoding
 	// A TokenSource is anything that can return a token.
@@ -32,34 +32,34 @@ type ZlmClient struct {
 	callOptions []CallOption
 }
 
-type ClientOption func(*ZlmClient)
+type ClientOption func(*Client)
 
 func WithEncoding(codec *encoding.Encoding) ClientOption {
-	return func(c *ZlmClient) {
+	return func(c *Client) {
 		c.codec = codec
 	}
 }
 
 func WithTokenSource(t oauth2.TokenSource) ClientOption {
-	return func(c *ZlmClient) {
+	return func(c *Client) {
 		c.tokenSource = t
 	}
 }
 
 func WithValidate(f func(any) error) ClientOption {
-	return func(c *ZlmClient) {
+	return func(c *Client) {
 		c.validate = f
 	}
 }
 
 func WithCallOption(cs ...CallOption) ClientOption {
-	return func(c *ZlmClient) {
+	return func(c *Client) {
 		c.callOptions = append(c.callOptions, cs...)
 	}
 }
 
-func NewClient(opts ...ClientOption) *ZlmClient {
-	c := &ZlmClient{
+func NewClient(opts ...ClientOption) *Client {
+	c := &Client{
 		cc:    resty.New(),
 		codec: encoding.New(),
 	}
@@ -82,9 +82,9 @@ func NewClient(opts ...ClientOption) *ZlmClient {
 	return c
 }
 
-func (c *ZlmClient) Deref() *resty.Client { return c.cc }
+func (c *Client) Deref() *resty.Client { return c.cc }
 
-func (c *ZlmClient) CallSetting(path string, cos ...CallOption) *CallSettings {
+func (c *Client) CallSetting(path string, cos ...CallOption) *CallSettings {
 	cs := &CallSettings{
 		contentType: "application/json",
 		accept:      "application/json",
@@ -103,7 +103,7 @@ func (c *ZlmClient) CallSetting(path string, cos ...CallOption) *CallSettings {
 
 // Invoke the request
 // NOTE: Do not use this function. use Execute instead.
-func (c *ZlmClient) Invoke(ctx context.Context, method, path string, in, out any, settings *CallSettings) error {
+func (c *Client) Invoke(ctx context.Context, method, path string, in, out any, settings *CallSettings) error {
 	if c.validate != nil {
 		if err := c.validate(in); err != nil {
 			return err
@@ -159,7 +159,7 @@ func hasRequestBody(method string) bool {
 	return !ok
 }
 
-func (c *ZlmClient) Execute(ctx context.Context, method, path string, req, resp any, opts ...CallOption) error {
+func (c *Client) Execute(ctx context.Context, method, path string, req, resp any, opts ...CallOption) error {
 	var in any
 
 	settings := c.CallSetting(path, opts...)
@@ -172,49 +172,49 @@ func (c *ZlmClient) Execute(ctx context.Context, method, path string, req, resp 
 }
 
 // Get method does GET HTTP request. It's defined in section 4.3.1 of RFC7231.
-func (c *ZlmClient) Get(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
+func (c *Client) Get(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
 	return c.Execute(ctx, http.MethodGet, path, req, resp, opts...)
 }
 
 // Head method does HEAD HTTP request. It's defined in section 4.3.2 of RFC7231.
-func (c *ZlmClient) Head(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
+func (c *Client) Head(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
 	return c.Execute(ctx, http.MethodHead, path, req, resp, opts...)
 }
 
 // Post method does POST HTTP request. It's defined in section 4.3.3 of RFC7231.
-func (c *ZlmClient) Post(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
+func (c *Client) Post(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
 	return c.Execute(ctx, http.MethodPost, path, req, resp, opts...)
 }
 
 // Put method does PUT HTTP request. It's defined in section 4.3.4 of RFC7231.
-func (c *ZlmClient) Put(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
+func (c *Client) Put(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
 	return c.Execute(ctx, http.MethodPut, path, req, resp, opts...)
 }
 
 // Delete method does DELETE HTTP request. It's defined in section 4.3.5 of RFC7231.
-func (c *ZlmClient) Delete(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
+func (c *Client) Delete(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
 	return c.Execute(ctx, http.MethodDelete, path, req, resp, opts...)
 }
 
 // Options method does OPTIONS HTTP request. It's defined in section 4.3.7 of RFC7231.
-func (c *ZlmClient) Options(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
+func (c *Client) Options(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
 	return c.Execute(ctx, http.MethodOptions, path, req, resp, opts...)
 }
 
 // Patch method does PATCH HTTP request. It's defined in section 2 of RFC5789.
-func (c *ZlmClient) Patch(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
+func (c *Client) Patch(ctx context.Context, path string, req, resp any, opts ...CallOption) error {
 	return c.Execute(ctx, http.MethodPatch, path, req, resp, opts...)
 }
 
 // EncodeURL encode msg to url path.
 // pathTemplate is a template of url path like http://helloworld.dev/{name}/sub/{sub.name}.
-func (c *ZlmClient) EncodeURL(pathTemplate string, msg any, needQuery bool) string {
+func (c *Client) EncodeURL(pathTemplate string, msg any, needQuery bool) string {
 	return c.codec.EncodeURL(pathTemplate, msg, needQuery)
 }
 
 // EncodeQuery encode v into “URL encoded” form
 // ("bar=baz&foo=quux") sorted by key.
-func (c *ZlmClient) EncodeQuery(v any) (string, error) {
+func (c *Client) EncodeQuery(v any) (string, error) {
 	vv, err := c.codec.EncodeQuery(v)
 	if err != nil {
 		return "", err
@@ -222,7 +222,7 @@ func (c *ZlmClient) EncodeQuery(v any) (string, error) {
 	return vv.Encode(), nil
 }
 
-func (c *ZlmClient) DownloadFile(ctx context.Context, method, path string, req any, filename string, opts ...CallOption) error {
+func (c *Client) DownloadFile(ctx context.Context, method, path string, req any, filename string, opts ...CallOption) error {
 	var in any
 
 	settings := c.CallSetting(path, opts...)

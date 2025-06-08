@@ -17,11 +17,14 @@ type RtpServerEntry struct {
 	StreamId string `json:"stream_id"` //绑定的流id
 }
 
-func (c *ZlmClient) ListRtpServer(ctx context.Context, req *ListRtpServerRequest, opts ...CallOption) (*ListRtpServerReply, error) {
+func (c *Client) ListRtpServer(ctx context.Context, req *ListRtpServerRequest, opts ...CallOption) (*ListRtpServerReply, error) {
 	var resp ListRtpServerReply
 
 	err := c.Get(ctx, "/index/api/listRtpServer", req, &resp, opts...)
 	if err != nil {
+		return nil, err
+	}
+	if err = resp.inspectError(); err != nil {
 		return nil, err
 	}
 	return &resp, nil

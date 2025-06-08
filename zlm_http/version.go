@@ -18,11 +18,14 @@ type VersionData struct {
 	CommitHash string `json:"commitHash"` // commit id
 }
 
-func (c *ZlmClient) Version(ctx context.Context, req *VersionRequest, opts ...CallOption) (*VersionReply, error) {
+func (c *Client) Version(ctx context.Context, req *VersionRequest, opts ...CallOption) (*VersionReply, error) {
 	var resp VersionReply
 
 	err := c.Get(ctx, "/index/api/version", req, &resp, opts...)
 	if err != nil {
+		return nil, err
+	}
+	if err = resp.inspectError(); err != nil {
 		return nil, err
 	}
 	return &resp, nil

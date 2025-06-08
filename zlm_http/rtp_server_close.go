@@ -14,11 +14,14 @@ type CloseRtpServerReply struct {
 	Hit int `json:"hit"` // 是否找到记录并关闭
 }
 
-func (c *ZlmClient) CloseRtpServer(ctx context.Context, req *CloseRtpServerRequest, opts ...CallOption) (*CloseRtpServerReply, error) {
+func (c *Client) CloseRtpServer(ctx context.Context, req *CloseRtpServerRequest, opts ...CallOption) (*CloseRtpServerReply, error) {
 	var resp CloseRtpServerReply
 
 	err := c.Post(ctx, "/index/api/closeRtpServer", req, &resp, opts...)
 	if err != nil {
+		return nil, err
+	}
+	if err = resp.inspectError(); err != nil {
 		return nil, err
 	}
 	return &resp, nil

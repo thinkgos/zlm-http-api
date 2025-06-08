@@ -1,5 +1,9 @@
 package zlm_http
 
+import (
+	"fmt"
+)
+
 // code定义
 const (
 	Code_Success     = 0    // 执行成功
@@ -16,4 +20,29 @@ type BaseResult struct {
 	Result int    `json:"result"` // 业务代码执行失败具体原因
 }
 
-func (b BaseResult) IsSuccess() bool { return b.Code == Code_Success }
+func (b BaseResult) inspectError() error {
+	if b.Code == Code_Success {
+		return nil
+	}
+	return &ErrorBusiness{
+		Code:   b.Code,
+		Msg:    b.Msg,
+		Result: b.Result,
+	}
+}
+
+type ErrorBusiness struct {
+	Code   int    `json:"code"`   // 执行结果, 0: 成功, 其它为失败
+	Msg    string `json:"msg"`    // 失败消息
+	Result int    `json:"result"` // 业务代码执行失败具体原因
+}
+
+func (e *ErrorBusiness) Error() string {
+	if e.Code == Code_Success {
+		return "<nil>"
+	}
+	if e.Result == 0 {
+		return fmt.Sprintf("zlm_http: code %d, msg %s", e.Code, e.Msg)
+	}
+	return fmt.Sprintf("zlm_http: code %d, msg %s, result %d", e.Code, e.Msg, e.Code)
+}

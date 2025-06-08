@@ -6,7 +6,7 @@ const (
 	secret  = "ynaHOQRQaXCBCZn50hreQ8xHzqdDr8eh"
 )
 
-var client = func() *ZlmClient {
+var client = func() *Client {
 	c := NewClient(WithCallOption(WithCoNoAuth()))
 	c.Deref().
 		SetBaseURL(baseUrl).

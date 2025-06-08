@@ -43,11 +43,14 @@ type AddStreamProxyData struct {
 	Key string `json:"key"`
 }
 
-func (c *ZlmClient) AddStreamProxy(ctx context.Context, req *AddStreamProxyRequest, opts ...CallOption) (*AddStreamProxyReply, error) {
+func (c *Client) AddStreamProxy(ctx context.Context, req *AddStreamProxyRequest, opts ...CallOption) (*AddStreamProxyReply, error) {
 	var resp AddStreamProxyReply
 
 	err := c.Post(ctx, "/index/api/addStreamProxy", req, &resp, opts...)
 	if err != nil {
+		return nil, err
+	}
+	if err = resp.inspectError(); err != nil {
 		return nil, err
 	}
 	return &resp, nil
