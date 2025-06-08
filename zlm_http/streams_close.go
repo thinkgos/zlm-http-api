@@ -8,11 +8,12 @@ import (
 // https://docs.zlmediakit.com/zh/guide/media_server/restful_api.html#_8%E3%80%81-index-api-close-streams
 
 type CloseStreamsRequest struct {
-	Schema string `json:"schema"` // O, 筛选协议, 例如rtsp或 rtmp
-	Vhost  string `json:"vhost"`  // O, 筛选虚拟主机, 例如__defaultVhost__
-	App    string `json:"app"`    // O, 筛选应用名, 例如 live
-	Stream string `json:"stream"` // O, 筛选流id, 例如 test
-	Force  int    `json:"force"`  // O, 是否强制关闭
+	Secret string `json:"secret,omitempty"` // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
+	Schema string `json:"schema"`           // O, 筛选协议, 例如rtsp或 rtmp
+	Vhost  string `json:"vhost"`            // O, 筛选虚拟主机, 例如__defaultVhost__
+	App    string `json:"app"`              // O, 筛选应用名, 例如 live
+	Stream string `json:"stream"`           // O, 筛选流id, 例如 test
+	Force  int    `json:"force"`            // O, 是否强制关闭
 }
 type CloseStreamsReply struct {
 	BaseResult

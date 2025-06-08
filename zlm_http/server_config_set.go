@@ -6,6 +6,7 @@ import "context"
 // https://docs.zlmediakit.com/zh/guide/media_server/restful_api.html#_4%E3%80%81-index-api-setserverconfig
 
 type SetServerConfigRequest struct {
+	Secret                              string  `json:"secret,omitempty"` // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
 	Api_ApiDebug                        *string `json:"api.apiDebug,omitempty"`
 	Api_DefaultSnap                     *string `json:"api.defaultSnap,omitempty"`
 	Api_DownloadRoot                    *string `json:"api.downloadRoot,omitempty"`

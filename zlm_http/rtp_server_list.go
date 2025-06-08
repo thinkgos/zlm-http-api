@@ -5,7 +5,9 @@ import "context"
 //* 获取 openRtpServer 接口创建的所有 RTP 服务器
 // https://docs.zlmediakit.com/zh/guide/media_server/restful_api.html#_26%E3%80%81-index-api-listrtpserver
 
-type ListRtpServerRequest struct{}
+type ListRtpServerRequest struct {
+	Secret string `json:"secret,omitempty"` // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
+}
 type ListRtpServerReply struct {
 	BaseResult
 	Data []*RtpServerEntry `json:"data"`

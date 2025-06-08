@@ -6,6 +6,7 @@ import "context"
 // https://docs.zlmediakit.com/zh/guide/media_server/restful_api.html#_12%E3%80%81-index-api-addstreamproxy
 
 type AddStreamProxyRequest struct {
+	Secret        string   `json:"secret,omitempty"`          // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
 	Vhost         string   `json:"vhost"`                     // M, 添加的流的虚拟主机, 例如__defaultVhost__
 	App           string   `json:"app"`                       // M, 添加的流的应用名, 例如 live
 	Stream        string   `json:"stream"`                    // M, 添加的流的id名, 例如 test
