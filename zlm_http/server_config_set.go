@@ -152,7 +152,7 @@ type SetServerConfigRequest struct {
 	RtpProxy_PsPt                       *string `json:"rtp_proxy.ps_pt,omitempty"`
 	RtpProxy_RtpG711DurMs               *string `json:"rtp_proxy.rtp_g711_dur_ms,omitempty"`
 	RtpProxy_TimeoutSec                 *string `json:"rtp_proxy.timeoutSec,omitempty"`
-	RtpProxy_UDPRecvSocketBuffer        *string `json:"rtp_proxy.udp_recv_socket_buffer,omitempty"`
+	RtpProxy_UdpRecvSocketBuffer        *string `json:"rtp_proxy.udp_recv_socket_buffer,omitempty"`
 	Rtsp_AuthBasic                      *string `json:"rtsp.authBasic,omitempty"`
 	Rtsp_DirectProxy                    *string `json:"rtsp.directProxy,omitempty"`
 	Rtsp_HandshakeSecond                *string `json:"rtsp.handshakeSecond,omitempty"`

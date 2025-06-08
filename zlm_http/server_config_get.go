@@ -161,7 +161,7 @@ type ServerConfigData struct {
 	RtpProxy_PsPt                       string `json:"rtp_proxy.ps_pt"`
 	RtpProxy_RtpG711DurMs               string `json:"rtp_proxy.rtp_g711_dur_ms"`
 	RtpProxy_TimeoutSec                 string `json:"rtp_proxy.timeoutSec"`
-	RtpProxy_UDPRecvSocketBuffer        string `json:"rtp_proxy.udp_recv_socket_buffer"`
+	RtpProxy_UdpRecvSocketBuffer        string `json:"rtp_proxy.udp_recv_socket_buffer"`
 	Rtsp_AuthBasic                      string `json:"rtsp.authBasic"`
 	Rtsp_DirectProxy                    string `json:"rtsp.directProxy"`
 	Rtsp_HandshakeSecond                string `json:"rtsp.handshakeSecond"`
