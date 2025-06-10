@@ -11,5 +11,5 @@ func Test_GetApiList(t *testing.T) {
 	resp, err := client.GetApiList(context.Background(), &GetApiListRequest{})
 	require.NoError(t, err)
 	require.Greater(t, len(resp.Data), 0)
-	// t.Logf("%#v\n", resp.Data)
+	t.Logf("%#v\n", len(resp.Data))
 }

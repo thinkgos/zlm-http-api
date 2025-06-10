@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/things-go/encoding"
+	"github.com/thinkgos/encoding"
 	"golang.org/x/oauth2"
 	"resty.dev/v3"
 )
@@ -209,7 +209,7 @@ func (c *Client) Patch(ctx context.Context, path string, req, resp any, opts ...
 // EncodeURL encode msg to url path.
 // pathTemplate is a template of url path like http://helloworld.dev/{name}/sub/{sub.name}.
 func (c *Client) EncodeURL(pathTemplate string, msg any, needQuery bool) string {
-	return c.codec.EncodeURL(pathTemplate, msg, needQuery)
+	return c.codec.EncodeUrl(pathTemplate, msg, needQuery)
 }
 
 // EncodeQuery encode v into “URL encoded” form

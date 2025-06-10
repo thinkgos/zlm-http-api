@@ -175,14 +175,5 @@ type SetServerConfigReply struct {
 }
 
 func (c *Client) SetServerConfig(ctx context.Context, req *SetServerConfigRequest, opts ...CallOption) (*SetServerConfigReply, error) {
-	var resp SetServerConfigReply
-
-	err := c.Post(ctx, "/index/api/setServerConfig", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError(); err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return genericPost[SetServerConfigRequest, SetServerConfigReply](c, "/index/api/setServerConfig", ctx, req, opts...)
 }

@@ -11,10 +11,10 @@ import (
 
 type GetMediaListRequest struct {
 	Secret string `json:"secret,omitempty"` // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
-	Schema string `json:"schema"`           // O, 筛选协议, 例如rtsp或 rtmp
-	Vhost  string `json:"vhost"`            // O, 筛选虚拟主机, 例如__defaultVhost__
-	App    string `json:"app"`              // O, 筛选应用名, 例如 live
-	Stream string `json:"stream"`           // O, 筛选流id, 例如 test
+	Schema string `json:"schema,omitempty"` // O, 筛选协议, 例如rtsp或 rtmp
+	Vhost  string `json:"vhost,omitempty"`  // O, 筛选虚拟主机, 例如__defaultVhost__
+	App    string `json:"app,omitempty"`    // O, 筛选应用名, 例如 live
+	Stream string `json:"stream,omitempty"` // O, 筛选流id, 例如 test
 }
 type GetMediaListReply struct {
 	BaseResult
@@ -39,14 +39,5 @@ type MediaEntry struct {
 }
 
 func (c *Client) GetMediaList(ctx context.Context, req *GetMediaListRequest, opts ...CallOption) (*GetMediaListReply, error) {
-	var resp GetMediaListReply
-
-	err := c.Get(ctx, "/index/api/getMediaList", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError(); err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return genericGet[GetMediaListRequest, GetMediaListReply](c, "/index/api/getMediaList", ctx, req, opts...)
 }

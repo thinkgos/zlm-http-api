@@ -9,13 +9,33 @@
 - [ ] 4. `/index/api/setServerConfig` 设置服务器配置
 - [ ] 5. `/index/api/restartServer` 重启服务器, 只有Daemon方式才能重启, 否则是直接关闭!
 - [x] 6. `/index/api/getMediaList` 获取流列表, 可选筛选参数
-- [ ] 7. `/index/api/close_stream` 关闭流(已过期, 请使用close_streams接口替换)
+- [ ] 7. ~~`/index/api/close_stream`~~ 关闭流(已过期, 请使用close_streams接口替换)
 - [ ] 8. `/index/api/close_streams` 关闭流(目前所有类型的流都支持关闭)
+- [ ] 9. `/index/api/getAllSession` 获取所有TcpSession列表(获取所有tcp客户端相关信息)
+- [ ] 10. `/index/api/kick_session` 断开tcp连接, 比如说可以断开rtsp、rtmp播放器等
+- [ ] 11. `/index/api/kick_sessions` 断开tcp连接, 比如说可以断开rtsp、rtmp播放器等
+- [ ] 12. `/index/api/addStreamProxy` 动态添加 rtsp/rtmp/hls/http-ts/http-flv 拉流代理(只支持 H264/H265/aac/G711/opus 负载)
+- [ ] 13. `/index/api/delStreamProxy` 关闭拉流代理(流注册成功后, 也可以使用close_streams接口替代)
+- [ ] 14. `/index/api/addFFmpegSource` 通过 fork FFmpeg 进程的方式拉流代理, 支持任意协议
+- [ ] 15. `/index/api/delFFmpegSource` 关闭 ffmpeg 拉流代理(流注册成功后, 也可以使用close_streams接口替代)
+- [ ] 16. ~~`/index/api/isMediaOnline`~~ 判断直播流是否在线(已过期, 请使用getMediaList接口替代)
+- [ ] 17. ~~`/index/api/getMediaInfo`~~ 获取流相关信息(已过期, 请使用getMediaList接口替代)
+- [ ] 18. `/index/api/getRtpInfo` 获取 rtp 代理时的某路 ssrc rtp 信息
+- [ ] 19. `/index/api/getMp4RecordFile` 搜索文件系统, 获取流对应的录像文件列表或日期文件夹列表
+- [ ] 20. `/index/api/startRecord` 开始录制 hls 或 MP4
+- [ ] 21. `/index/api/stopRecord` 停止录制流
+- [ ] 22. `/index/api/isRecording` 获取流录制状态
 - [x] 23. `/index/api/getSnap` 获取截图或生成实时截图并返回
 - [ ] 24. `/index/api/openRtpServer` 创建GB28181 RTP 接收端口, 如果该端口接收数据超时, 则会自动被回收(不用调用 closeRtpServer 接口)
 - [ ] 25. `/index/api/closeRtpServer` 关闭 GB28181 RTP接收端口
 - [ ] 26. `/index/api/listRtpServer` 获取 openRtpServer 接口创建的所有 RTP 服务器
+- [ ] 27. `/index/api/startSendRtp` 作为GB28181客户端, 启动 ps-rtp 推流, 支持rtp/udp方式.
+- [ ] 28. `/index/api/stopSendRtp` 停止 GB28181 ps-rtp 推流
+- [ ] 29. `/index/api/getStatistic` 获取主要对象个数统计, 主要用于分析内存性能.
+- [ ] 30. `/index/api/addStreamPusherProxy` 添加 rtsp/rtmp 主动推流(把本服务器的直播流推送到其他服务器去)
+- [ ] 31. `/index/api/delStreamPusherProxy` 关闭推流(可以使用close_streams接口关闭源直播流也可以停止推流)
 - [x] 32. `index/api/version` 获取版本信息, 如分支, commit id, 编译时间
+- [ ] 33. `/index/api/getMediaPlayerList` 获取某个流观看者列表
 
 ## WebHook api
 
@@ -35,5 +55,41 @@ Link: [WebHook api](https://docs.zlmediakit.com/zh/guide/media_server/web_hook_a
 - [x] `on_server_started`
 - [x] `on_server_keepalive`
 - [x] `on_rtp_server_timeout`
+
+## 一些音视频概念
+
+[概念](./concept.md)
+
+## 播放url规则
+
+详细查看原文档: [播放url规则](https://docs.zlmediakit.com/zh/guide/media_server/play_url_rules.html)
+
+### 1. url的组成部分
+
+以`rtsp://somedomain.com:554/live/0?token=abcdefg&field=value`为例,该`url`分为以下几个部分:
+
+- 协议(`schema`): rtsp 协议, 默认端口 554
+- 虚拟主机(`vhost`): `somedomain.com`, 该字段既可以是域名也可以是ip, 如果是ip则对应的虚拟主机为`__defaultVhost__`
+- 服务端口号(`port`): 554, 如果不指定端口号, 则使用协议默认端口号
+- 应用名(`app`): live
+- 流id(`streamid`): 0
+- 参数(`args`): `token=abcdefg&field=value`
+
+### 2. ZLMediaKit 中的流媒体源
+
+在`ZLMediaKit`中, 流媒体源是一种可以被用于直播转发、推流转发等功能的数据对象, 在本项目中被称作为`MediaSource`, 目前支持 5 种类型的流媒体源, 分别是`RtspMediaSource`、`RtmpMediaSource`、`HlsMediaSource`、`TSMediaSource`、`FMP4MediaSource`.
+
+定位一个流媒体源, 主要通过4个元素(我们后续称其为4元组), 分别是:
+
+- 协议(`scheam`)
+- 虚拟主机(`vhost`)
+- 应用名(`app`)
+- 流ID(`streamid`)
+
+`RtspMediaSource`支持 rtsp 播放、rtsp 推流、webrtc 播放、webrtc 推流.
+`RtmpMediaSource`支持 rtmp 推流/播放、http-flv 播放、ws-flv 播放.
+`HlsMediaSource`支持 hls 播放.
+`TSMediaSource` 支持 http-ts 播放、ws-ts 播放.
+`FMP4MediaSource`支持 http-fmp4 播放、ws-fmp4 播放.
 
 ## License

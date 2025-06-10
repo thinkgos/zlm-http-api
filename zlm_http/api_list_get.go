@@ -14,14 +14,5 @@ type GetApiListReply struct {
 }
 
 func (c *Client) GetApiList(ctx context.Context, req *GetApiListRequest, opts ...CallOption) (*GetApiListReply, error) {
-	var resp GetApiListReply
-
-	err := c.Get(ctx, "/index/api/getApiList", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError();err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return genericGet[GetApiListRequest, GetApiListReply](c, "/index/api/getApiList", ctx, req, opts...)
 }

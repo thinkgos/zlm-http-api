@@ -44,14 +44,5 @@ type AddStreamProxyData struct {
 }
 
 func (c *Client) AddStreamProxy(ctx context.Context, req *AddStreamProxyRequest, opts ...CallOption) (*AddStreamProxyReply, error) {
-	var resp AddStreamProxyReply
-
-	err := c.Post(ctx, "/index/api/addStreamProxy", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError(); err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return genericPost[AddStreamProxyRequest, AddStreamProxyReply](c, "/index/api/addStreamProxy", ctx, req, opts...)
 }

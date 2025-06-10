@@ -3,9 +3,9 @@ package zlm_def
 // OriginSock 客户端和服务器网络信息
 type OriginSock struct {
 	Identifier string `json:"identifier"` // 识别码
-	LocalIP    string `json:"local_ip"`   // 本机ip
+	LocalIp    string `json:"local_ip"`   // 本机ip
 	LocalPort  int    `json:"local_port"` // 本机端口
-	PeerIP     string `json:"peer_ip"`    // 对端ip
+	PeerIp     string `json:"peer_ip"`    // 对端ip
 	PeerPort   int    `json:"peer_port"`  // 对端端口
 }
 

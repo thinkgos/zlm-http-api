@@ -19,14 +19,5 @@ type VersionData struct {
 }
 
 func (c *Client) Version(ctx context.Context, req *VersionRequest, opts ...CallOption) (*VersionReply, error) {
-	var resp VersionReply
-
-	err := c.Get(ctx, "/index/api/version", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError(); err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return genericGet[VersionRequest, VersionReply](c, "/index/api/version", ctx, req, opts...)
 }

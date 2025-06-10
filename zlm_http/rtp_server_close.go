@@ -15,14 +15,5 @@ type CloseRtpServerReply struct {
 }
 
 func (c *Client) CloseRtpServer(ctx context.Context, req *CloseRtpServerRequest, opts ...CallOption) (*CloseRtpServerReply, error) {
-	var resp CloseRtpServerReply
-
-	err := c.Post(ctx, "/index/api/closeRtpServer", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError(); err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return genericPost[CloseRtpServerRequest, CloseRtpServerReply](c, "/index/api/closeRtpServer", ctx, req, opts...)
 }

@@ -180,14 +180,5 @@ type ServerConfigData struct {
 }
 
 func (c *Client) GetServerConfig(ctx context.Context, req *GetServerConfigRequest, opts ...CallOption) (*GetServerConfigReply, error) {
-	var resp GetServerConfigReply
-
-	err := c.Get(ctx, "/index/api/getServerConfig", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError(); err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return genericGet[GetServerConfigRequest, GetServerConfigReply](c, "/index/api/getServerConfig", ctx, req, opts...)
 }

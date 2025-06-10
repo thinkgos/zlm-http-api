@@ -13,14 +13,5 @@ type RestartServerReply struct {
 }
 
 func (c *Client) RestartServer(ctx context.Context, req *RestartServerRequest, opts ...CallOption) (*RestartServerReply, error) {
-	var resp RestartServerReply
-
-	err := c.Post(ctx, "/index/api/restartServer", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError(); err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return genericPost[RestartServerRequest, RestartServerReply](c, "/index/api/restartServer", ctx, req, opts...)
 }

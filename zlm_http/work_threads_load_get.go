@@ -18,14 +18,5 @@ type WorkThreadsLoadEntry struct {
 }
 
 func (c *Client) GetWorkThreadsLoad(ctx context.Context, req *GetWorkThreadsLoadRequest, opts ...CallOption) (*GetWorkThreadsLoadReply, error) {
-	var resp GetWorkThreadsLoadReply
-
-	err := c.Get(ctx, "/index/api/getWorkThreadsLoad", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError(); err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return genericGet[GetWorkThreadsLoadRequest, GetWorkThreadsLoadReply](c, "/index/api/getWorkThreadsLoad", ctx, req, opts...)
 }
