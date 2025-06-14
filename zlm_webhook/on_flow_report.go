@@ -7,6 +7,7 @@ package zlm_webhook
 // 阈值通过配置文件general.flowThreshold配置; 此事件对回复不敏感.
 
 type OnFlowReportRequest struct {
+	HookIndex     int    `json:"hook_index"`
 	MediaServerId string `json:"mediaServerId"` // 服务器id, 通过配置文件设置
 	App           string `json:"app"`           // 流应用名
 	Id            string `json:"id"`            // tcp链接唯一id
@@ -14,11 +15,11 @@ type OnFlowReportRequest struct {
 	Params        string `json:"params"`        // 推流或播放url参数
 	Player        bool   `json:"player"`        // true: 播放器, false: 推流器
 	Schema        string `json:"schema"`        // 播放或推流的协议, 可能是 rtsp、rtmp、http
+	Protocol      string `json:"protocol"`      // 流协议
 	Stream        string `json:"stream"`        // 流id
 	TotalBytes    int    `json:"totalBytes"`    // 耗费上下行流量总和, 单位字节
 	Vhost         string `json:"vhost"`         // 流虚拟主机
 	Ip            string `json:"ip"`            // 客户端ip
 	Port          int    `json:"port"`          // 客户端端口号
 }
-
 type OnFlowReportReply = DefaultReply

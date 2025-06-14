@@ -1,86 +1,14 @@
 package zlm_webhook
 
-// {
-//    "api.apiDebug" : "1",
-//    "api.secret" : "035c73f7-bb6b-4889-a715-d9eb2d1925cc",
-//    "ffmpeg.bin" : "/usr/local/bin/ffmpeg",
-//    "ffmpeg.cmd" : "%s -re -i %s -c:a aac -strict -2 -ar 44100 -ab 48k -c:v libx264 -f flv %s",
-//    "ffmpeg.log" : "./ffmpeg/ffmpeg.log",
-//    "general.mediaServerId" : "your_server_id",
-//    "general.addMuteAudio" : "1",
-//    "general.enableVhost" : "1",
-//    "general.flowThreshold" : "1024",
-//    "general.maxStreamWaitMS" : "5000",
-//    "general.publishToHls" : "1",
-//    "general.publishToMP4" : "0",
-//    "general.publishToRtxp" : "1",
-//    "general.resetWhenRePlay" : "1",
-//    "general.streamNoneReaderDelayMS" : "5000",
-//    "general.ultraLowDelay" : "1",
-//    "hls.fileBufSize" : "65536",
-//    "hls.filePath" : "./httpRoot",
-//    "hls.segDur" : "2",
-//    "hls.segNum" : "3",
-//    "hls.segRetain" : "5",
-//    "hook.admin_params" : "secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc",
-//    "hook.enable" : "1",
-//    "hook.on_flow_report" : "https://127.0.0.1/index/hook/on_flow_report",
-//    "hook.on_http_access" : "https://127.0.0.1/index/hook/on_http_access",
-//    "hook.on_play" : "https://127.0.0.1/index/hook/on_play",
-//    "hook.on_publish" : "https://127.0.0.1/index/hook/on_publish",
-//    "hook.on_record_mp4" : "https://127.0.0.1/index/hook/on_record_mp4",
-//    "hook.on_rtsp_auth" : "https://127.0.0.1/index/hook/on_rtsp_auth",
-//    "hook.on_rtsp_realm" : "https://127.0.0.1/index/hook/on_rtsp_realm",
-//    "hook.on_server_started" : "http://127.0.0.1/index/hook/on_server_started",
-//    "hook.on_shell_login" : "https://127.0.0.1/index/hook/on_shell_login",
-//    "hook.on_stream_changed" : "https://127.0.0.1/index/hook/on_stream_changed",
-//    "hook.on_stream_none_reader" : "https://127.0.0.1/index/hook/on_stream_none_reader",
-//    "hook.on_stream_not_found" : "https://127.0.0.1/index/hook/on_stream_not_found",
-//    "hook.timeoutSec" : "10",
-//    "http.charSet" : "utf-8",
-//    "http.keepAliveSecond" : "15",
-//    "http.maxReqCount" : "100",
-//    "http.maxReqSize" : "4096",
-//    "http.notFound" : "<html><head><title>404 Not Found</title></head><body bgcolor=\"white\"><center><h1>您访问的资源不存在</h1></center><hr><center>ZLMediaKit-4.0</center></body></html>",
-//    "http.port" : "80",
-//    "http.rootPath" : "./httpRoot",
-//    "http.sendBufSize" : "65536",
-//    "http.sslport" : "443",
-//    "multicast.addrMax" : "239.255.255.255",
-//    "multicast.addrMin" : "239.0.0.0",
-//    "multicast.udpTTL" : "64",
-//    "record.appName" : "record",
-//    "record.fastStart" : "0",
-//    "record.fileBufSize" : "65536",
-//    "record.filePath" : "./httpRoot",
-//    "record.fileRepeat" : "0",
-//    "record.fileSecond" : "3600",
-//    "record.sampleMS" : "500",
-//    "rtmp.handshakeSecond" : "15",
-//    "rtmp.keepAliveSecond" : "15",
-//    "rtmp.modifyStamp" : "1",
-//    "rtmp.port" : "1935",
-//    "rtp.audioMtuSize" : "600",
-//    "rtp.clearCount" : "10",
-//    "rtp.cycleMS" : "46800000",
-//    "rtp.maxRtpCount" : "50",
-//    "rtp.videoMtuSize" : "1400",
-//    "rtsp.authBasic" : "0",
-//    "rtsp.directProxy" : "1",
-//    "rtsp.handshakeSecond" : "15",
-//    "rtsp.keepAliveSecond" : "15",
-//    "rtsp.modifyStamp" : "0",
-//    "rtsp.port" : "554",
-//    "rtsp.sslport" : "322",
-//    "shell.maxReqSize" : "1024",
-//    "shell.port" : "9000"
-// }
+import "github.com/thinkgos/zlm-http-api/zlm_def"
 
 //* 服务器启动事件
 // https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html#_15%E3%80%81on-server-started
 //
 // 可以用于监听服务器崩溃重启; 此事件对回复不敏感.
 
-// TODO: fix me
-type OnServerStartedRequest struct{}
+type OnServerStartedRequest struct {
+	HookIndex int `json:"hook_index"`
+	zlm_def.ServerConfig
+}
 type OnServerStartedReply = DefaultReply

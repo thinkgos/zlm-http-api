@@ -4,15 +4,19 @@ package zlm_webhook
 // https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html#_7%E3%80%81on-publish
 
 type OnPublishRequest struct {
+	HookIndex     int    `json:"hook_index"`
 	MediaServerId string `json:"mediaServerId"` // 服务器id, 通过配置文件设置
 	App           string `json:"app"`           // 流应用名
 	Id            string `json:"id"`            // tcp链接唯一id
 	Ip            string `json:"ip"`            // 推流器ip
 	Port          int    `json:"port"`          // 推流器端口号
 	Params        string `json:"params"`        // 推流url参数
-	Schema        string `json:"schema"`        // 推流的协议, 可能是 rtsp、rtmp
+	Schema        string `json:"schema"`        // 推流的协议, 可能是rtsp、rtmp
+	Protocol      string `json:"protocol"`      // 流协议
 	Stream        string `json:"stream"`        // 流id
 	Vhost         string `json:"vhost"`         // 流虚拟主机
+	OriginType    int    `json:"originType"`    // 原始类型
+	OriginTypeStr string `json:"originTypeStr"` // 原始类型字符串
 }
 type OnPublishReply struct {
 	Code           int     `json:"code"`                       // 错误代码, 0: 成功
@@ -26,11 +30,11 @@ type OnPublishReply struct {
 	EnableTs       *bool   `json:"enable_ts,omitempty"`        // 是否转 http-ts/ws-ts 协议
 	EnableAudio    *bool   `json:"enable_audio,omitempty"`     // 转协议时是否开启音频
 	AddMuteAudio   *bool   `json:"add_mute_audio,omitempty"`   // 转协议时, 无音频是否添加静音aac音频
-	HlsDemand      bool    `json:"hls_demand,omitempty"`       // 该协议是否有人观看才生成
-	Fmp4Demand     bool    `json:"fmp4_demand,omitempty"`      // 该协议是否有人观看才生成
-	RtspDemand     bool    `json:"rtsp_demand,omitempty"`      // 该协议是否有人观看才生成
-	RtmpDemand     bool    `json:"rtmp_demand,omitempty"`      // 该协议是否有人观看才生成
-	TsDemand       bool    `json:"ts_demand,omitempty"`        // 该协议是否有人观看才生成
+	HlsDemand      *bool   `json:"hls_demand,omitempty"`       // 该协议是否有人观看才生成
+	Fmp4Demand     *bool   `json:"fmp4_demand,omitempty"`      // 该协议是否有人观看才生成
+	RtspDemand     *bool   `json:"rtsp_demand,omitempty"`      // 该协议是否有人观看才生成
+	RtmpDemand     *bool   `json:"rtmp_demand,omitempty"`      // 该协议是否有人观看才生成
+	TsDemand       *bool   `json:"ts_demand,omitempty"`        // 该协议是否有人观看才生成
 	ContinuePushMs *int    `json:"continue_push_ms,omitempty"` // 断连续推延时, 单位毫秒, 置空使用配置文件默认值
 	HlsSavePath    *string `json:"hls_save_path,omitempty"`    // hls 文件保存保存根目录, 置空使用默认
 	ModifyStamp    *int    `json:"modify_stamp,omitempty"`     // 该流是否开启时间戳覆盖(0:绝对时间戳/1:系统时间戳/2:相对时间戳)

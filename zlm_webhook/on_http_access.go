@@ -4,6 +4,7 @@ package zlm_webhook
 // https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html#_5%E3%80%81on-http-access
 
 type OnHttpAccessRequest struct {
+	HookIndex                     int    `json:"hook_index"`
 	MediaServerId                 string `json:"mediaServerId"`                    // 服务器 id, 通过配置文件设置
 	HeaderAccept                  string `json:"header.Accept"`                    // http客户端请求header
 	HeaderAcceptEncoding          string `json:"header.Accept-Encoding"`           // http客户端请求header
@@ -24,8 +25,7 @@ type OnHttpAccessRequest struct {
 type OnHttpAccessReply struct {
 	Code          int    `json:"code"`          // 请固定返回0
 	Err           string `json:"err"`           // 不允许访问的错误提示, 允许访问请置空
+	MediaServerId string `json:"mediaServerId"` // 服务器 id, 通过配置文件设置
 	Path          string `json:"path"`          // 该客户端能访问或被禁止的顶端目录, 如果为空字符串, 则表述为当前目录
 	Second        int    `json:"second"`        // 本次授权结果的有效期, 单位秒
-	MediaServerId string `json:"mediaServerId"` // 服务器 id, 通过配置文件设置
-
 }

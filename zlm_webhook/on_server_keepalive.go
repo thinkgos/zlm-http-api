@@ -4,8 +4,8 @@ package zlm_webhook
 // https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html#_16%E3%80%81on-server-keepalive
 
 type OnServerKeepaliveRequest struct {
-	MediaServerId string                `json:"mediaServerId"`
 	HookIndex     int                   `json:"hook_index"`
+	MediaServerId string                `json:"mediaServerId"`
 	Data          OnServerKeepaliveData `json:"data"`
 }
 type OnServerKeepaliveData struct {

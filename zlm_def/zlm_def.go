@@ -24,4 +24,7 @@ type Tracks struct {
 	GopIntervalMs int     `json:"gop_interval_ms,omitempty"` // gop大小, 单位帧数
 	GopSize       int     `json:"gop_size,omitempty"`        // gop大小, 单位帧数
 	KeyFrames     int     `json:"key_frames,omitempty"`      // 累计接收关键帧数
+	Duration      int     `json:"duration"`                  // FIXME: 暂时未知用途
+	Frames        int     `json:"frames"`                    // FIXME: 暂时未知用途
+	Loss          float64 `json:"loss"`                      // FIXME: 暂时未知用途
 }

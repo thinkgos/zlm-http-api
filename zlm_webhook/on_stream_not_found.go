@@ -6,6 +6,7 @@ package zlm_webhook
 // 用户可以在此事件触发时, 立即去拉流, 这样可以实现按需拉流; 此事件对回复不敏感.
 
 type OnStreamNotFoundRequest struct {
+	HookIndex     int    `json:"hook_index"`
 	MediaServerId string `json:"mediaServerId"` // 服务器id, 通过配置文件设置
 	App           string `json:"app"`           // 流应用名
 	Id            string `json:"id"`            // tcp链接唯一id

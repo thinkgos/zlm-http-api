@@ -8,6 +8,7 @@ package zlm_webhook
 // 播放rtsp流时, 如果该流启动了rtsp专属鉴权(on_rtsp_realm)那么将不再触发on_play事件.
 
 type OnPlayRequest struct {
+	HookIndex     int    `json:"hook_index"`
 	MediaServerId string `json:"mediaServerId"` // 服务器id, 通过配置文件设置
 	App           string `json:"app"`           // 流应用名
 	Id            string `json:"id"`            // tcp链接唯一id
@@ -15,6 +16,7 @@ type OnPlayRequest struct {
 	Port          int    `json:"port"`          // 播放器端口号
 	Params        string `json:"params"`        // 播放url参数
 	Schema        string `json:"schema"`        // 播放的协议, 可能是rtsp、rtmp、http
+	Protocol      string `json:"protocol"`      // 流协议
 	Stream        string `json:"stream"`        // 流id
 	Vhost         string `json:"vhost"`         // 流虚拟主机
 }

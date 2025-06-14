@@ -11,14 +11,16 @@ package zlm_webhook
 // (mp4录制可以通过配置文件mp4_as_player控制, 但是 rtsp/rtmp/rtp 转推算观看人数, 也会触发该事件.)
 
 type OnStreamNoneReaderRequest struct {
+	HookIndex     int    `json:"hook_index"`
 	MediaServerId string `json:"mediaServerId"` // 服务器 id, 通过配置文件设置
 	App           string `json:"app"`           // 流应用名
 	Schema        string `json:"schema"`        // rtsp或rtmp
 	Stream        string `json:"stream"`        // 流id
 	Vhost         string `json:"vhost"`         // 流虚拟主机
+	Params        string `json:"params"`        // 流url参数
 }
 
 type OnStreamNoneReaderReply struct {
 	Code  int  `json:"code"`  // 请固定返回 0
-	Close bool `json:"close"` // 否关闭推流或拉流
+	Close bool `json:"close"` // 是否关闭推流或拉流
 }
