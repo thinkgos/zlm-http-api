@@ -8,7 +8,7 @@
 - [x] 3. `/index/api/getServerConfig` 获取服务器配置
 - [ ] 4. `/index/api/setServerConfig` 设置服务器配置
 - [ ] 5. `/index/api/restartServer` 重启服务器, 只有Daemon方式才能重启, 否则是直接关闭!
-- [ ] 6. `/index/api/getMediaList` 获取流列表, 可选筛选参数
+- [x] 6. `/index/api/getMediaList` 获取流列表, 可选筛选参数
 - [ ] 7. ~~`/index/api/close_stream`~~ 关闭流(已过期, 请使用close_streams接口替换)
 - [ ] 8. `/index/api/close_streams` 关闭流(目前所有类型的流都支持关闭)
 - [ ] 9. `/index/api/getAllSession` 获取所有TcpSession列表(获取所有tcp客户端相关信息)

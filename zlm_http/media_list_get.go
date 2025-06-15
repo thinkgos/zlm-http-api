@@ -32,10 +32,15 @@ type MediaEntry struct {
 	OriginType       int                 `json:"originType"`       // 产生源类型，包括 unknown = 0,rtmp_push=1,rtsp_push=2,rtp_push=3,pull=4,ffmpeg_pull=5,mp4_vod=6,device_chn=7,rtc_push=8
 	OriginTypeStr    string              `json:"originTypeStr"`    // 产生源类型字符串
 	OriginUrl        string              `json:"originUrl"`        // 产生源的url
+	Params           string              `json:"params"`           // 流url参数
+	TotalBytes       int                 `json:"totalBytes"`       // 总字节数
+	IsRecordingHls   bool                `json:"isRecordingHLS"`   // 是否记录HLS
+	IsRecordingMp4   bool                `json:"isRecordingMP4"`   // 是否记录MP4
 	AliveSecond      int                 `json:"aliveSecond"`      // 存活时间, 单位秒
 	BytesSpeed       int                 `json:"bytesSpeed"`       // 数据产生速率, 单位byte/s
 	CreateStamp      int                 `json:"createStamp"`      // GMT unix系统时间戳, 单位秒
 	Tracks           []zlm_def.Tracks    `json:"tracks"`           // 追踪
+
 }
 
 func (c *Client) GetMediaList(ctx context.Context, req *GetMediaListRequest, opts ...CallOption) (*GetMediaListReply, error) {
