@@ -31,7 +31,7 @@
 - [ ] 26. `/index/api/listRtpServer` 获取 openRtpServer 接口创建的所有 RTP 服务器
 - [ ] 27. `/index/api/startSendRtp` 作为GB28181客户端, 启动 ps-rtp 推流, 支持rtp/udp方式.
 - [ ] 28. `/index/api/stopSendRtp` 停止 GB28181 ps-rtp 推流
-- [ ] 29. `/index/api/getStatistic` 获取主要对象个数统计, 主要用于分析内存性能.
+- [x] 29. `/index/api/getStatistic` 获取主要对象个数统计, 主要用于分析内存性能.
 - [ ] 30. `/index/api/addStreamPusherProxy` 添加 rtsp/rtmp 主动推流(把本服务器的直播流推送到其他服务器去)
 - [ ] 31. `/index/api/delStreamPusherProxy` 关闭推流(可以使用close_streams接口关闭源直播流也可以停止推流)
 - [x] 32. `index/api/version` 获取版本信息, 如分支, commit id, 编译时间

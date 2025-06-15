@@ -7,10 +7,6 @@ import "context"
 
 type GetStatisticRequest struct {
 	Secret string `json:"secret,omitempty"` // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
-	Schema string `json:"schema"`           // M, 协议, 例如rtsp或 rtmp
-	Vhost  string `json:"vhost"`            // M, 虚拟主机, 例如__defaultVhost__
-	App    string `json:"app"`              // M, 应用名, 例如 live
-	Stream string `json:"stream"`           // M, 流id, 例如 test
 }
 type GetStatisticReply struct {
 	BaseResult
@@ -29,6 +25,10 @@ type StatisticData struct {
 	TcpClient             int `json:"TcpClient"`
 	TcpServer             int `json:"TcpServer"`
 	TcpSession            int `json:"TcpSession"`
+	UdpServer             int `json:"UdpServer"`
+	UdpSession            int `json:"UdpSession"`
+	RtmpPacket            int `json:"RtmpPacket"`
+	RtpPacket             int `json:"RtpPacket"`
 }
 
 func (c *Client) GetStatistic(ctx context.Context, req *GetStatisticRequest, opts ...CallOption) (*GetStatisticReply, error) {
