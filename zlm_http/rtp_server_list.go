@@ -10,11 +10,16 @@ type ListRtpServerRequest struct {
 }
 type ListRtpServerReply struct {
 	BaseResult
-	Data []*RtpServerEntry `json:"data"`
+	Data []RtpServerEntry `json:"data"`
 }
 type RtpServerEntry struct {
-	Port     int    `json:"port"`      // 绑定的端口号
-	StreamId string `json:"stream_id"` //绑定的流id
+	Vhost     string `json:"vhost"`      // 虚拟主机
+	App       string `json:"app"`        // 流应用名
+	StreamId  string `json:"stream_id"`  // 流id
+	TcpMode   int    `json:"tcp_mode"`   // 0: udp 模式, 1: tcp被动模式, 2: tcp 主动模式(兼容 enable_tcp为0/1)
+	Port      int    `json:"port"`       // 端口号
+	OnlyTrack int    `json:"only_track"` // 流过滤, 0: 全部, 1: 只音频, 2: 只视频
+	Ssrc      int    `json:"ssrc"`       // ssrc
 }
 
 func (c *Client) ListRtpServer(ctx context.Context, req *ListRtpServerRequest, opts ...CallOption) (*ListRtpServerReply, error) {

@@ -42,7 +42,7 @@ type Webhook interface {
 	OnRecordTs(ctx context.Context, req *OnRecordTsRequest) (*OnRecordTsReply, error)
 	// 调用openRtpServer接口, rtp server长时间未收到数据, 执行此 web hook, 对回复不敏感.
 	OnRtpServerTimeout(ctx context.Context, req *OnRtpServerTimeoutRequest) (*OnRtpServerTimeoutReply, error)
-	// 发送rtp停止事件
+	// 发送rtp(startSendRtp)被动关闭时回调
 	OnSendRtpStopped(ctx context.Context, req *OnSendRtpStoppedRequest) (*OnSendRtpStoppedReply, error)
 	// rtsp专用的鉴权事件
 	// 先触发on_rtsp_realm事件然后才会触发on_rtsp_auth事件。

@@ -17,6 +17,6 @@ func (w *ZlmWebhook) OnSendRtpStopped(ctx context.Context, req *zlm_webhook.OnSe
 		// 	StreamId(req.Stream),
 		// ).
 		Any("payload", req).
-		Msg("OnRecordTs")
+		Msg("OnSendRtpStopped")
 	return &zlm_webhook.OnSendRtpStoppedReply{}, nil
 }

@@ -7,6 +7,8 @@ import "context"
 
 type CloseRtpServerRequest struct {
 	Secret   string `json:"secret,omitempty"` // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
+	Vhost    string `json:"vhost"`            // M, 虚拟主机
+	App      string `json:"app"`              // M, 流应用名
 	StreamId string `json:"stream_id"`        // M, 该端口绑定的流id, 该端口只能创建这一个流(而不是根据ssrc创建多个)
 }
 type CloseRtpServerReply struct {

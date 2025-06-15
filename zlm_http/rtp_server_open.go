@@ -6,10 +6,14 @@ import "context"
 // https://docs.zlmediakit.com/zh/guide/media_server/restful_api.html#_24%E3%80%81-index-api-openrtpserver
 
 type OpenRtpServerRequest struct {
-	Secret   string `json:"secret,omitempty"` // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
-	Port     int    `json:"port"`             // M, 接收端口, 0则为随机端口
-	TcpMode  int    `json:"tcp_mode"`         // M, 0: udp 模式, 1: tcp被动模式, 2: tcp 主动模式(兼容 enable_tcp为0/1)
-	StreamId string `json:"stream_id"`        // M, 该端口绑定的流id, 该端口只能创建这一个流(而不是根据ssrc创建多个)
+	Secret    string `json:"secret,omitempty"` // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
+	Vhost     string `json:"vhost"`            // M, 虚拟主机
+	App       string `json:"app"`              // M, 流应用名
+	StreamId  string `json:"stream_id"`        // M, 该端口绑定的流id, 该端口只能创建这一个流(而不是根据ssrc创建多个)
+	TcpMode   int    `json:"tcp_mode"`         // M, 0: udp 模式, 1: tcp被动模式, 2: tcp 主动模式(兼容 enable_tcp为0/1)
+	OnlyTrack int    `json:"only_track"`       // M, 流过滤, 0: 全部, 1: 只音频, 2: 只视频
+	Port      int    `json:"port"`             // M, 接收端口, 0则为随机端口
+	Ssrc      int    `json:"ssrc"`             // M, ssrc
 }
 type OpenRtpServerReply struct {
 	BaseResult

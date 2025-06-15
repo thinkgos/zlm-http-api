@@ -2,7 +2,7 @@ package zlm_http
 
 import "context"
 
-//* 停止 GB28181 ps-rtp 推流
+//* 作为GB28181客户端, 停止 GB28181 ps-rtp 推流
 // https://docs.zlmediakit.com/zh/guide/media_server/restful_api.html#_28%E3%80%81-index-api-stopsendrtp
 
 type StopSendRtpRequest struct {
