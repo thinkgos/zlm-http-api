@@ -5,7 +5,6 @@ go 1.22
 require (
 	github.com/stretchr/testify v1.10.0
 	github.com/thinkgos/encoding v1.3.0
-	golang.org/x/oauth2 v0.26.0
 	resty.dev/v3 v3.0.0-beta.3
 )
 

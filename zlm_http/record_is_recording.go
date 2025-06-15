@@ -10,11 +10,11 @@ type IsRecordingRequest struct {
 	Vhost  string `json:"vhost"`            // M, 流的虚拟主机, 例如__defaultVhost__
 	App    string `json:"app"`              // M, 流的应用名, 例如 live
 	Stream string `json:"stream"`           // M, 流id, 例如 test
-	Type   string `json:"type"`             // M, 0: hls, 1: mp4
+	Type   int    `json:"type,string"`      // M, 0: hls, 1: mp4
 }
 type IsRecordingReply struct {
 	BaseResult
-	Status bool `json:"result"` // false:未录制, true:正在录制
+	Status bool `json:"status"` // false:未录制, true:正在录制
 }
 
 func (c *Client) IsRecording(ctx context.Context, req *IsRecordingRequest, opts ...CallOption) (*IsRecordingReply, error) {

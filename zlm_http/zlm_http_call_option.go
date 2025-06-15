@@ -16,8 +16,6 @@ type CallSettings struct {
 	baseUrl string
 	// path overwrite api call
 	path string
-	// no auth
-	noAuth bool
 	// 是否是文件下载
 	isFileDownload bool
 }
@@ -58,13 +56,6 @@ func WithCoPath(path string) CallOption {
 func WithCoHeader(k, v string) CallOption {
 	return func(cs *CallSettings) {
 		cs.header.Add(k, v)
-	}
-}
-
-// WithCoNoAuth
-func WithCoNoAuth() CallOption {
-	return func(cs *CallSettings) {
-		cs.noAuth = true
 	}
 }
 

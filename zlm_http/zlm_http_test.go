@@ -1,15 +1,17 @@
 package zlm_http
 
 const (
-	// baseUrl = "http://127.0.0.1"
-	baseUrl = "http://10.110.18.131"
-	secret  = "ynaHOQRQaXCBCZn50hreQ8xHzqdDr8eh"
+	// testBaseUrl = "http://127.0.0.1"
+	testBaseUrl = "http://10.110.18.131"
+	testSecret  = "ynaHOQRQaXCBCZn50hreQ8xHzqdDr8eh"
+	testStream  = "chibo01"
+	testApp     = "live"
 )
 
 var client = func() *Client {
-	c := NewClient(WithCallOption(WithCoNoAuth()))
+	c := NewClient()
 	c.Deref().
-		SetBaseURL(baseUrl).
-		SetQueryParam("secret", secret)
+		SetBaseURL(testBaseUrl).
+		SetQueryParam("secret", testSecret)
 	return c
 }()

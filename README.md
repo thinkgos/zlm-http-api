@@ -2,13 +2,13 @@
 
 ## http restful api
 
-- [x] 0. `/index/api/getApiList` 获取API列表
-- [x] 1. `/index/api/getThreadsLoad` 获取各 epoll(或 select)线程负载以及延时
-- [x] 2. `/index/api/getWorkThreadsLoad` 获取各后台 epoll(或 select)线程负载以及延时
+- [ ] 0. `/index/api/getApiList` 获取API列表
+- [ ] 1. `/index/api/getThreadsLoad` 获取各 epoll(或 select)线程负载以及延时
+- [ ] 2. `/index/api/getWorkThreadsLoad` 获取各后台 epoll(或 select)线程负载以及延时
 - [ ] 3. `/index/api/getServerConfig` 获取服务器配置
 - [ ] 4. `/index/api/setServerConfig` 设置服务器配置
 - [ ] 5. `/index/api/restartServer` 重启服务器, 只有Daemon方式才能重启, 否则是直接关闭!
-- [x] 6. `/index/api/getMediaList` 获取流列表, 可选筛选参数
+- [ ] 6. `/index/api/getMediaList` 获取流列表, 可选筛选参数
 - [ ] 7. ~~`/index/api/close_stream`~~ 关闭流(已过期, 请使用close_streams接口替换)
 - [ ] 8. `/index/api/close_streams` 关闭流(目前所有类型的流都支持关闭)
 - [ ] 9. `/index/api/getAllSession` 获取所有TcpSession列表(获取所有tcp客户端相关信息)
@@ -22,10 +22,10 @@
 - [ ] 17. ~~`/index/api/getMediaInfo`~~ 获取流相关信息(已过期, 请使用getMediaList接口替代)
 - [ ] 18. `/index/api/getRtpInfo` 获取 rtp 代理时的某路 ssrc rtp 信息
 - [ ] 19. `/index/api/getMp4RecordFile` 搜索文件系统, 获取流对应的录像文件列表或日期文件夹列表
-- [ ] 20. `/index/api/startRecord` 开始录制 hls 或 MP4
-- [ ] 21. `/index/api/stopRecord` 停止录制流
-- [ ] 22. `/index/api/isRecording` 获取流录制状态
-- [x] 23. `/index/api/getSnap` 获取截图或生成实时截图并返回
+- [x] 20. `/index/api/startRecord` 开始录制hls或MP4
+- [x] 21. `/index/api/stopRecord` 停止录制流
+- [x] 22. `/index/api/isRecording` 获取流录制状态
+- [ ] 23. `/index/api/getSnap` 获取截图或生成实时截图并返回
 - [ ] 24. `/index/api/openRtpServer` 创建GB28181 RTP 接收端口, 如果该端口接收数据超时, 则会自动被回收(不用调用 closeRtpServer 接口)
 - [ ] 25. `/index/api/closeRtpServer` 关闭 GB28181 RTP接收端口
 - [ ] 26. `/index/api/listRtpServer` 获取 openRtpServer 接口创建的所有 RTP 服务器
@@ -34,7 +34,7 @@
 - [ ] 29. `/index/api/getStatistic` 获取主要对象个数统计, 主要用于分析内存性能.
 - [ ] 30. `/index/api/addStreamPusherProxy` 添加 rtsp/rtmp 主动推流(把本服务器的直播流推送到其他服务器去)
 - [ ] 31. `/index/api/delStreamPusherProxy` 关闭推流(可以使用close_streams接口关闭源直播流也可以停止推流)
-- [x] 32. `index/api/version` 获取版本信息, 如分支, commit id, 编译时间
+- [ ] 32. `index/api/version` 获取版本信息, 如分支, commit id, 编译时间
 - [ ] 33. `/index/api/getMediaPlayerList` 获取某个流观看者列表
 
 ## WebHook api
@@ -45,8 +45,8 @@ Link: [WebHook api](https://docs.zlmediakit.com/zh/guide/media_server/web_hook_a
 - [x] `on_http_access` 访问http文件服务器上hls之外的文件时触发
 - [x] `on_play` 播放器鉴权事件(如果rtsp启用专有鉴权, 将不会触发该事件)
 - [x] `on_publish` 推流鉴权事件
-- [ ] `on_record_mp4`
-- [ ] `on_record_ts`
+- [x] `on_record_mp4` 录制mp4完成后通知事件; 此事件对回复不敏感.
+- [x] `on_record_ts` 录制hls完成后通知事件; 此事件对回复不敏感.
 - [x] `on_rtp_server_timeout` 调用openRtpServer接口, rtp server长时间未收到数据, 执行此 web hook, 对回复不敏感.
 - [ ] `on_send_rtp_stopped`
 - [x] `on_rtsp_auth` rtsp专用的鉴权事件, 先触发on_rtsp_realm事件然后才会触发on_rtsp_auth事件.

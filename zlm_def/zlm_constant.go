@@ -1,5 +1,7 @@
 package zlm_def
 
+const DefaultVhost = "__defaultVhost__"
+
 const (
 	CodecId_H264  = 0 // H264
 	CodecId_H265  = 1 // H265

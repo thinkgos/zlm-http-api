@@ -3,14 +3,14 @@ package zlm_http
 import (
 	"bytes"
 	"context"
-	"errors"
 	"io"
 	"net/http"
 
 	"github.com/thinkgos/encoding"
-	"golang.org/x/oauth2"
 	"resty.dev/v3"
 )
+
+
 
 var noRequestBodyMethods = map[string]struct{}{
 	http.MethodGet:     {},
@@ -24,8 +24,6 @@ var noRequestBodyMethods = map[string]struct{}{
 type Client struct {
 	cc    *resty.Client
 	codec *encoding.Encoding
-	// A TokenSource is anything that can return a token.
-	tokenSource oauth2.TokenSource
 	// validate request
 	validate func(any) error
 	// call option
@@ -37,12 +35,6 @@ type ClientOption func(*Client)
 func WithEncoding(codec *encoding.Encoding) ClientOption {
 	return func(c *Client) {
 		c.codec = codec
-	}
-}
-
-func WithTokenSource(t oauth2.TokenSource) ClientOption {
-	return func(c *Client) {
-		c.tokenSource = t
 	}
 }
 
@@ -90,7 +82,6 @@ func (c *Client) CallSetting(path string, cos ...CallOption) *CallSettings {
 		accept:      "application/json",
 		path:        path,
 		header:      make(http.Header),
-		noAuth:      false,
 	}
 	for _, co := range c.callOptions {
 		co(cs)
@@ -117,16 +108,6 @@ func (c *Client) Invoke(ctx context.Context, method, path string, in, out any, s
 			return err
 		}
 		r = r.SetBody(reqBody)
-	}
-	if !settings.noAuth {
-		if c.tokenSource == nil {
-			return errors.New("transport: token source should be not nil")
-		}
-		tk, err := c.tokenSource.Token()
-		if err != nil {
-			return err
-		}
-		r.SetHeader("Authorization", tk.Type()+" "+tk.AccessToken)
 	}
 	r.SetHeader("Content-Type", settings.contentType)
 	r.SetHeader("Accept", settings.accept)
@@ -245,16 +226,6 @@ func (c *Client) DownloadFile(ctx context.Context, method, path string, req any,
 			return err
 		}
 		r = r.SetBody(reqBody)
-	}
-	if !settings.noAuth {
-		if c.tokenSource == nil {
-			return errors.New("transport: token source should be not nil")
-		}
-		tk, err := c.tokenSource.Token()
-		if err != nil {
-			return err
-		}
-		r.SetHeader("Authorization", tk.Type()+" "+tk.AccessToken)
 	}
 	r.SetHeader("Content-Type", settings.contentType)
 	r.SetHeader("Accept", settings.accept)

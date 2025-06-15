@@ -6,7 +6,7 @@ package zlm_webhook
 type OnRtspAuthRequest struct {
 	HookIndex     int    `json:"hook_index"`
 	MediaServerId string `json:"mediaServerId"`   // 服务器id, 通过配置文件设置
-	App           string `json:"app"`             // 录制的流应用名
+	App           string `json:"app"`             // 流应用名
 	Id            string `json:"id"`              // tcp链接唯一id
 	Ip            string `json:"ip"`              // rtsp播放器ip
 	Port          int    `json:"port"`            // rtsp 播放器端口号
