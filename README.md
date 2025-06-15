@@ -43,21 +43,21 @@ Link: [WebHook api](https://docs.zlmediakit.com/zh/guide/media_server/web_hook_a
 
 - [x] `on_flow_report` 流量统计事件
 - [x] `on_http_access` 访问http文件服务器上hls之外的文件时触发
-- [x] `on_play` 播放器鉴权事件
+- [x] `on_play` 播放器鉴权事件(如果rtsp启用专有鉴权, 将不会触发该事件)
 - [x] `on_publish` 推流鉴权事件
 - [ ] `on_record_mp4`
 - [ ] `on_record_ts`
-- [ ] `on_rtsp_auth`
-- [ ] `on_rtsp_realm`
-- [ ] `on_shell_login` shell登录鉴权, telnet调试方式
+- [x] `on_rtp_server_timeout` 调用openRtpServer接口, rtp server长时间未收到数据, 执行此 web hook, 对回复不敏感.
+- [ ] `on_send_rtp_stopped`
+- [x] `on_rtsp_auth` rtsp专用的鉴权事件, 先触发on_rtsp_realm事件然后才会触发on_rtsp_auth事件.
+- [x] `on_rtsp_realm` 该rtsp流是否开启rtsp专用方式的鉴权事件, 开启后才会触发on_rtsp_auth事件
+- [x] `on_shell_login` shell登录鉴权, telnet调试方式
 - [x] `on_stream_changed` rtsp/rtmp 流注册或注销时触发此事件; 此事件对回复不敏感.
 - [x] `on_stream_none_reader` 流无人观看时事件
 - [x] `on_stream_not_found` 流未找到事件
 - [x] `on_server_started` 服务器启动事件
 - [x] `on_server_exited` 服务器退出事件
 - [x] `on_server_keepalive` 服务器定时上报, 上报间隔可配置, 默认10s上报一次
-- [ ] `on_send_rtp_stopped`
-- [ ] `on_rtp_server_timeout`
 
 ## 播放url规则
 

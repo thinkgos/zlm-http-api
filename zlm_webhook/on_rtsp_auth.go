@@ -1,9 +1,10 @@
 package zlm_webhook
 
-//* rtsp专用的鉴权事件, 先触发on_rtsp_realm事件然后才会触发on_rtsp_auth事件。
+//* rtsp专用的鉴权事件, 先触发on_rtsp_realm事件然后才会触发on_rtsp_auth事件.
 // https://docs.zlmediakit.com/zh/guide/media_server/web_hook_api.html#_10%E3%80%81on-rtsp-auth
 
 type OnRtspAuthRequest struct {
+	HookIndex     int    `json:"hook_index"`
 	MediaServerId string `json:"mediaServerId"`   // 服务器id, 通过配置文件设置
 	App           string `json:"app"`             // 录制的流应用名
 	Id            string `json:"id"`              // tcp链接唯一id
@@ -11,6 +12,7 @@ type OnRtspAuthRequest struct {
 	Port          int    `json:"port"`            // rtsp 播放器端口号
 	Params        string `json:"params"`          // 播放rtsp url参数
 	Schema        string `json:"schema"`          // rtsp 或 rtsps
+	Protocol      string `json:"protocol"`        // 流协议
 	Stream        string `json:"stream"`          // 流id
 	Vhost         string `json:"vhost"`           // 流虚拟主机
 	MustNoEncrypt bool   `json:"must_no_encrypt"` // 请求的密码是否必须为明文(base64鉴权需要明文密码)
