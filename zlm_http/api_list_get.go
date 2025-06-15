@@ -14,5 +14,5 @@ type GetApiListReply struct {
 }
 
 func (c *Client) GetApiList(ctx context.Context, req *GetApiListRequest, opts ...CallOption) (*GetApiListReply, error) {
-	return genericGet[GetApiListRequest, GetApiListReply](c, "/index/api/getApiList", ctx, req, opts...)
+	return GenericGet[GetApiListRequest, GetApiListReply](c, "/index/api/getApiList", ctx, req, opts...)
 }

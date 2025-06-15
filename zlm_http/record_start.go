@@ -20,5 +20,5 @@ type StartRecordReply struct {
 }
 
 func (c *Client) StartRecord(ctx context.Context, req *StartRecordRequest, opts ...CallOption) (*StartRecordReply, error) {
-	return genericPost[StartRecordRequest, StartRecordReply](c, "/index/api/startRecord", ctx, req, opts...)
+	return GenericPost[StartRecordRequest, StartRecordReply](c, "/index/api/startRecord", ctx, req, opts...)
 }

@@ -15,5 +15,5 @@ type StopSendRtpRequest struct {
 type StopSendRtpReply = BaseResult
 
 func (c *Client) StopSendRtp(ctx context.Context, req *StopSendRtpRequest, opts ...CallOption) (*StopSendRtpReply, error) {
-	return genericPost[StopSendRtpRequest, StopSendRtpReply](c, "/index/api/stopSendRtp", ctx, req, opts...)
+	return GenericPost[StopSendRtpRequest, StopSendRtpReply](c, "/index/api/stopSendRtp", ctx, req, opts...)
 }

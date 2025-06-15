@@ -18,5 +18,5 @@ type DelFFmpegSourceData struct {
 }
 
 func (c *Client) DelFFmpegSource(ctx context.Context, req *DelFFmpegSourceRequest, opts ...CallOption) (*DelFFmpegSourceReply, error) {
-	return genericPost[DelFFmpegSourceRequest, DelFFmpegSourceReply](c, "/index/api/delFFmpegSource", ctx, req, opts...)
+	return GenericPost[DelFFmpegSourceRequest, DelFFmpegSourceReply](c, "/index/api/delFFmpegSource", ctx, req, opts...)
 }

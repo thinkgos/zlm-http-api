@@ -22,5 +22,5 @@ type CloseStreamsReply struct {
 }
 
 func (c *Client) CloseStreams(ctx context.Context, req *CloseStreamsRequest, opts ...CallOption) (*CloseStreamsReply, error) {
-	return genericPost[CloseStreamsRequest, CloseStreamsReply](c, "/index/api/close_streams", ctx, req, opts...)
+	return GenericPost[CloseStreamsRequest, CloseStreamsReply](c, "/index/api/close_streams", ctx, req, opts...)
 }

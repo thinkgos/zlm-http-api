@@ -12,5 +12,5 @@ type KickSessionRequest struct {
 type KickSessionReply = BaseResult
 
 func (c *Client) KickSession(ctx context.Context, req *KickSessionRequest, opts ...CallOption) (*KickSessionReply, error) {
-	return genericPost[KickSessionRequest, KickSessionReply](c, "/index/api/kick_session", ctx, req, opts...)
+	return GenericPost[KickSessionRequest, KickSessionReply](c, "/index/api/kick_session", ctx, req, opts...)
 }

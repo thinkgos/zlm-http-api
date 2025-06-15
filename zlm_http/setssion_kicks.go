@@ -16,5 +16,5 @@ type KickSessionsReply struct {
 }
 
 func (c *Client) KickSessions(ctx context.Context, req *KickSessionsRequest, opts ...CallOption) (*KickSessionsReply, error) {
-	return genericPost[KickSessionsRequest, KickSessionsReply](c, "/index/api/kick_sessions", ctx, req, opts...)
+	return GenericPost[KickSessionsRequest, KickSessionsReply](c, "/index/api/kick_sessions", ctx, req, opts...)
 }

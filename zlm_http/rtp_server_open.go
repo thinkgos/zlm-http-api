@@ -17,5 +17,5 @@ type OpenRtpServerReply struct {
 }
 
 func (c *Client) OpenRtpServer(ctx context.Context, req *OpenRtpServerRequest, opts ...CallOption) (*OpenRtpServerReply, error) {
-	return genericPost[OpenRtpServerRequest, OpenRtpServerReply](c, "/index/api/openRtpServer", ctx, req, opts...)
+	return GenericPost[OpenRtpServerRequest, OpenRtpServerReply](c, "/index/api/openRtpServer", ctx, req, opts...)
 }

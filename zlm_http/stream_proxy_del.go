@@ -18,5 +18,5 @@ type DelStreamProxyData struct {
 }
 
 func (c *Client) DelStreamProxy(ctx context.Context, req *DelStreamProxyRequest, opts ...CallOption) (*DelStreamProxyReply, error) {
-	return genericPost[DelStreamProxyRequest, DelStreamProxyReply](c, "/index/api/delStreamProxy", ctx, req, opts...)
+	return GenericPost[DelStreamProxyRequest, DelStreamProxyReply](c, "/index/api/delStreamProxy", ctx, req, opts...)
 }

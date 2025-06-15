@@ -44,5 +44,5 @@ type AddStreamProxyData struct {
 }
 
 func (c *Client) AddStreamProxy(ctx context.Context, req *AddStreamProxyRequest, opts ...CallOption) (*AddStreamProxyReply, error) {
-	return genericPost[AddStreamProxyRequest, AddStreamProxyReply](c, "/index/api/addStreamProxy", ctx, req, opts...)
+	return GenericPost[AddStreamProxyRequest, AddStreamProxyReply](c, "/index/api/addStreamProxy", ctx, req, opts...)
 }

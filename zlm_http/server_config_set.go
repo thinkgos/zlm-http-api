@@ -175,5 +175,5 @@ type SetServerConfigReply struct {
 }
 
 func (c *Client) SetServerConfig(ctx context.Context, req *SetServerConfigRequest, opts ...CallOption) (*SetServerConfigReply, error) {
-	return genericPost[SetServerConfigRequest, SetServerConfigReply](c, "/index/api/setServerConfig", ctx, req, opts...)
+	return GenericPost[SetServerConfigRequest, SetServerConfigReply](c, "/index/api/setServerConfig", ctx, req, opts...)
 }

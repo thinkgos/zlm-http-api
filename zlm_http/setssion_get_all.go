@@ -25,5 +25,5 @@ type SessionEntry struct {
 }
 
 func (c *Client) GetAllSession(ctx context.Context, req *GetAllSessionRequest, opts ...CallOption) (*GetAllSessionReply, error) {
-	return genericGet[GetAllSessionRequest, GetAllSessionReply](c, "/index/api/getAllSession", ctx, req, opts...)
+	return GenericGet[GetAllSessionRequest, GetAllSessionReply](c, "/index/api/getAllSession", ctx, req, opts...)
 }

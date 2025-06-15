@@ -27,14 +27,5 @@ type MediaPlayerEntry struct {
 }
 
 func (c *Client) GetMediaPlayerList(ctx context.Context, req *GetMediaPlayerListRequest, opts ...CallOption) (*GetMediaPlayerListReply, error) {
-	var resp GetMediaPlayerListReply
-
-	err := c.Get(ctx, "/index/api/getMediaPlayerList", req, &resp, opts...)
-	if err != nil {
-		return nil, err
-	}
-	if err = resp.inspectError(); err != nil {
-		return nil, err
-	}
-	return &resp, nil
+	return GenericGet[GetMediaPlayerListRequest, GetMediaPlayerListReply](c, "/index/api/getMediaPlayerList", ctx, req, opts...)
 }

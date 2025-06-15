@@ -23,5 +23,5 @@ type AddFFmpegSourceData struct {
 }
 
 func (c *Client) AddFFmpegSource(ctx context.Context, req *AddFFmpegSourceRequest, opts ...CallOption) (*AddFFmpegSourceReply, error) {
-	return genericPost[AddFFmpegSourceRequest, AddFFmpegSourceReply](c, "/index/api/addFFmpegSource", ctx, req, opts...)
+	return GenericPost[AddFFmpegSourceRequest, AddFFmpegSourceReply](c, "/index/api/addFFmpegSource", ctx, req, opts...)
 }

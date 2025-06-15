@@ -25,5 +25,5 @@ type StartSendRtpReply struct {
 }
 
 func (c *Client) StartSendRtp(ctx context.Context, req *StartSendRtpRequest, opts ...CallOption) (*StartSendRtpReply, error) {
-	return genericPost[StartSendRtpRequest, StartSendRtpReply](c, "/index/api/startSendRtp", ctx, req, opts...)
+	return GenericPost[StartSendRtpRequest, StartSendRtpReply](c, "/index/api/startSendRtp", ctx, req, opts...)
 }

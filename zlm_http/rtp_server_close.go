@@ -15,5 +15,5 @@ type CloseRtpServerReply struct {
 }
 
 func (c *Client) CloseRtpServer(ctx context.Context, req *CloseRtpServerRequest, opts ...CallOption) (*CloseRtpServerReply, error) {
-	return genericPost[CloseRtpServerRequest, CloseRtpServerReply](c, "/index/api/closeRtpServer", ctx, req, opts...)
+	return GenericPost[CloseRtpServerRequest, CloseRtpServerReply](c, "/index/api/closeRtpServer", ctx, req, opts...)
 }

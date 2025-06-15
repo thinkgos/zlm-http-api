@@ -18,5 +18,5 @@ type ThreadsLoadEntry struct {
 }
 
 func (c *Client) GetThreadsLoad(ctx context.Context, req *GetThreadsLoadRequest, opts ...CallOption) (*GetThreadsLoadReply, error) {
-	return genericGet[GetThreadsLoadRequest, GetThreadsLoadReply](c, "/index/api/getThreadsLoad", ctx, req, opts...)
+	return GenericGet[GetThreadsLoadRequest, GetThreadsLoadReply](c, "/index/api/getThreadsLoad", ctx, req, opts...)
 }

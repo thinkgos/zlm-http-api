@@ -18,5 +18,5 @@ type RtpServerEntry struct {
 }
 
 func (c *Client) ListRtpServer(ctx context.Context, req *ListRtpServerRequest, opts ...CallOption) (*ListRtpServerReply, error) {
-	return genericGet[ListRtpServerRequest, ListRtpServerReply](c, "/index/api/listRtpServer", ctx, req, opts...)
+	return GenericGet[ListRtpServerRequest, ListRtpServerReply](c, "/index/api/listRtpServer", ctx, req, opts...)
 }

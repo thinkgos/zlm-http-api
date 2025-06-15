@@ -18,5 +18,5 @@ type IsRecordingReply struct {
 }
 
 func (c *Client) IsRecording(ctx context.Context, req *IsRecordingRequest, opts ...CallOption) (*IsRecordingReply, error) {
-	return genericPost[IsRecordingRequest, IsRecordingReply](c, "/index/api/isRecording", ctx, req, opts...)
+	return GenericPost[IsRecordingRequest, IsRecordingReply](c, "/index/api/isRecording", ctx, req, opts...)
 }

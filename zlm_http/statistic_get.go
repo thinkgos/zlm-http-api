@@ -32,5 +32,5 @@ type StatisticData struct {
 }
 
 func (c *Client) GetStatistic(ctx context.Context, req *GetStatisticRequest, opts ...CallOption) (*GetStatisticReply, error) {
-	return genericGet[GetStatisticRequest, GetStatisticReply](c, "/index/api/getStatistic", ctx, req, opts...)
+	return GenericGet[GetStatisticRequest, GetStatisticReply](c, "/index/api/getStatistic", ctx, req, opts...)
 }

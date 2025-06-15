@@ -18,5 +18,5 @@ type GetServerConfigReply struct {
 }
 
 func (c *Client) GetServerConfig(ctx context.Context, req *GetServerConfigRequest, opts ...CallOption) (*GetServerConfigReply, error) {
-	return genericGet[GetServerConfigRequest, GetServerConfigReply](c, "/index/api/getServerConfig", ctx, req, opts...)
+	return GenericGet[GetServerConfigRequest, GetServerConfigReply](c, "/index/api/getServerConfig", ctx, req, opts...)
 }

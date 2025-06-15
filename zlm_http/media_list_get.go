@@ -44,5 +44,5 @@ type MediaEntry struct {
 }
 
 func (c *Client) GetMediaList(ctx context.Context, req *GetMediaListRequest, opts ...CallOption) (*GetMediaListReply, error) {
-	return genericGet[GetMediaListRequest, GetMediaListReply](c, "/index/api/getMediaList", ctx, req, opts...)
+	return GenericGet[GetMediaListRequest, GetMediaListReply](c, "/index/api/getMediaList", ctx, req, opts...)
 }

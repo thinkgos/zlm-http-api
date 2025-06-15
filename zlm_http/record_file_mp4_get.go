@@ -23,5 +23,5 @@ type GetMp4RecordFileData struct {
 }
 
 func (c *Client) GetMp4RecordFile(ctx context.Context, req *GetMp4RecordFileRequest, opts ...CallOption) (*GetMp4RecordFileReply, error) {
-	return genericGet[GetMp4RecordFileRequest, GetMp4RecordFileReply](c, "/index/api/getMp4RecordFile", ctx, req, opts...)
+	return GenericGet[GetMp4RecordFileRequest, GetMp4RecordFileReply](c, "/index/api/getMp4RecordFile", ctx, req, opts...)
 }

@@ -19,5 +19,5 @@ type GetRtpInfoReply struct {
 }
 
 func (c *Client) GetRtpInfo(ctx context.Context, req *GetRtpInfoRequest, opts ...CallOption) (*GetRtpInfoReply, error) {
-	return genericPost[GetRtpInfoRequest, GetRtpInfoReply](c, "/index/api/getRtpInfo", ctx, req, opts...)
+	return GenericPost[GetRtpInfoRequest, GetRtpInfoReply](c, "/index/api/getRtpInfo", ctx, req, opts...)
 }

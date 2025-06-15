@@ -13,5 +13,5 @@ type RestartServerReply struct {
 }
 
 func (c *Client) RestartServer(ctx context.Context, req *RestartServerRequest, opts ...CallOption) (*RestartServerReply, error) {
-	return genericPost[RestartServerRequest, RestartServerReply](c, "/index/api/restartServer", ctx, req, opts...)
+	return GenericPost[RestartServerRequest, RestartServerReply](c, "/index/api/restartServer", ctx, req, opts...)
 }

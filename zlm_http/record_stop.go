@@ -18,5 +18,5 @@ type StopRecordReply struct {
 }
 
 func (c *Client) StopRecord(ctx context.Context, req *StopRecordRequest, opts ...CallOption) (*StopRecordReply, error) {
-	return genericPost[StopRecordRequest, StopRecordReply](c, "/index/api/stopRecord", ctx, req, opts...)
+	return GenericPost[StopRecordRequest, StopRecordReply](c, "/index/api/stopRecord", ctx, req, opts...)
 }
