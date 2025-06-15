@@ -35,7 +35,7 @@
 - [ ] 30. `/index/api/addStreamPusherProxy` 添加 rtsp/rtmp 主动推流(把本服务器的直播流推送到其他服务器去)
 - [ ] 31. `/index/api/delStreamPusherProxy` 关闭推流(可以使用close_streams接口关闭源直播流也可以停止推流)
 - [x] 32. `index/api/version` 获取版本信息, 如分支, commit id, 编译时间
-- [ ] 33. `/index/api/getMediaPlayerList` 获取某个流观看者列表
+- [x] 33. `/index/api/getMediaPlayerList` 获取某个流观看者列表
 
 ## WebHook api
 

@@ -8,16 +8,14 @@ import (
 	"github.com/thinkgos/zlm-http-api/zlm_def"
 )
 
-func Test_IsRecording(t *testing.T) {
-	resp, err := client.IsRecording(context.Background(), &IsRecordingRequest{
-		Secret: testSecret,
+func Test_GetMediaPlayerList(t *testing.T) {
+	resp, err := client.GetMediaPlayerList(context.Background(), &GetMediaPlayerListRequest{
+		Schema: testSchema,
 		Vhost:  zlm_def.DefaultVhost,
 		App:    testApp,
 		Stream: testStream,
-		Type:   1,
 	})
 	require.NoError(t, err)
-	// require.True(t, resp.Status)
-	require.False(t, resp.Status)
-	t.Logf("%#v\n", resp)
+	require.GreaterOrEqual(t, len(resp.Data), 0)
+	t.Logf("%#v\n", resp.Data)
 }
