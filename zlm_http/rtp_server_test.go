@@ -5,7 +5,6 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/thinkgos/zlm-http-api/zlm_def"
 )
 
 func Test_RtpServer(t *testing.T) {
@@ -16,13 +15,13 @@ func Test_RtpServer(t *testing.T) {
 
 	//* 创建rtp流
 	respOpenRtpServer, err := client.OpenRtpServer(context.Background(), &OpenRtpServerRequest{
-		Vhost:     zlm_def.DefaultVhost,
-		App:       testApp,
+		// Vhost:     zlm_def.DefaultVhost,
+		// App:       testApp,
 		StreamId:  testStream,
 		TcpMode:   1,
-		OnlyTrack: 0,
 		Port:      0,
-		Ssrc:      123456,
+		OnlyTrack: 0,
+		// Ssrc:      123456,
 	})
 	require.NoError(t, err)
 	require.Equal(t, 0, respOpenRtpServer.Code)
@@ -36,8 +35,8 @@ func Test_RtpServer(t *testing.T) {
 
 	//* 关闭rtp流
 	respCloseRtpServer, err := client.CloseRtpServer(context.Background(), &CloseRtpServerRequest{
-		Vhost:    zlm_def.DefaultVhost,
-		App:      testApp,
+		// Vhost:    zlm_def.DefaultVhost,
+		// App:      testApp,
 		StreamId: testStream,
 	})
 	require.NoError(t, err)
