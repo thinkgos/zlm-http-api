@@ -1,6 +1,15 @@
 package zlm_def
 
-const DefaultVhost = "__defaultVhost__"
+const (
+	Schema_RTMP = "rtmp"
+	Schema_RTSP = "rtsp"
+	Schema_RTP  = "rtp"
+)
+
+// 虚拟主机
+const (
+	DefaultVhost = "__defaultVhost__"
+)
 
 const (
 	CodecId_H264  = 0 // H264

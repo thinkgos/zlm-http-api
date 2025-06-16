@@ -42,7 +42,7 @@ type AddStreamProxyReply struct {
 	Data AddStreamProxyData `json:"data"`
 }
 type AddStreamProxyData struct {
-	Key string `json:"key"`
+	Key string `json:"key"` // 唯一key
 }
 
 func (c *Client) AddStreamProxy(ctx context.Context, req *AddStreamProxyRequest, opts ...CallOption) (*AddStreamProxyReply, error) {
