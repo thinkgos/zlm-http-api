@@ -6,9 +6,9 @@ package zlm_webhook
 type OnRecordMp4Request struct {
 	HookIndex     int     `json:"hook_index"`
 	MediaServerId string  `json:"mediaServerId"` // 服务器id, 通过配置文件设置
+	Vhost         string  `json:"vhost"`         // 流虚拟主机
 	App           string  `json:"app"`           // 录制的流应用名
 	Stream        string  `json:"stream"`        // 录制的流id
-	Vhost         string  `json:"vhost"`         // 流虚拟主机
 	Url           string  `json:"url"`           // http/rtsp/rtmp 点播相对url路径
 	Params        string  `json:"params"`        // url参数
 	Folder        string  `json:"folder"`        // 文件所在目录路径, 例: /opt/media/bin/www/live/chibo01

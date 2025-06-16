@@ -13,7 +13,7 @@ type CloseStreamsRequest struct {
 	Vhost  string `json:"vhost"`            // M, 筛选虚拟主机, 例如__defaultVhost__
 	App    string `json:"app"`              // M, 筛选应用名, 例如 live
 	Stream string `json:"stream"`           // M, 筛选流id, 例如 test
-	Force  *int   `json:"force,omitempty"`  // O, 是否强制关闭
+	Force  *int   `json:"force,omitempty"`  // O, 是否强制关闭(有人在观看将强制关闭), 0: 不强制关闭, 1: 强制关闭
 }
 type CloseStreamsReply struct {
 	BaseResult

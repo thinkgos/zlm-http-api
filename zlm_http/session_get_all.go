@@ -16,12 +16,13 @@ type GetAllSessionReply struct {
 }
 
 type SessionEntry struct {
-	Id        string `json:"id"`         // 该tcp链接唯一id
-	LocalIP   string `json:"local_ip"`   // 本机网卡ip
-	LocalPort int    `json:"local_port"` // 本机端口号(这是个rtmp播放器或推流器)
-	PeerIp    string `json:"peer_ip"`    // 客户端ip
-	PeerPort  int    `json:"peer_port"`  // 客户端端口号
-	Typeid    string `json:"typeid"`     // 客户端TCPSession typeid
+	Id         string `json:"id"`         // 该tcp链接唯一id
+	Identifier string `json:"identifier"` // 识别码
+	LocalIP    string `json:"local_ip"`   // 本机网卡ip
+	LocalPort  int    `json:"local_port"` // 本机端口号(这是个rtmp播放器或推流器)
+	PeerIp     string `json:"peer_ip"`    // 客户端ip
+	PeerPort   int    `json:"peer_port"`  // 客户端端口号
+	Typeid     string `json:"typeid"`     // 客户端TCPSession typeid
 }
 
 func (c *Client) GetAllSession(ctx context.Context, req *GetAllSessionRequest, opts ...CallOption) (*GetAllSessionReply, error) {

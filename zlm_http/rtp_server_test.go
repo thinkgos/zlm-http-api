@@ -21,7 +21,9 @@ func Test_RtpServer(t *testing.T) {
 		TcpMode:   1,
 		Port:      0,
 		OnlyTrack: 0,
-		// Ssrc:      123456,
+		Ssrc:      0,
+		LocalIp:   "",
+		ReUsePort: false,
 	})
 	require.NoError(t, err)
 	require.Equal(t, 0, respOpenRtpServer.Code)

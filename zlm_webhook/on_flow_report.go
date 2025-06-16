@@ -9,16 +9,16 @@ package zlm_webhook
 type OnFlowReportRequest struct {
 	HookIndex     int    `json:"hook_index"`
 	MediaServerId string `json:"mediaServerId"` // 服务器id, 通过配置文件设置
+	Schema        string `json:"schema"`        // 播放或推流的协议, 可能是 rtsp、rtmp、http
+	Vhost         string `json:"vhost"`         // 流虚拟主机
 	App           string `json:"app"`           // 流应用名
+	Stream        string `json:"stream"`        // 流id
+	Params        string `json:"params"`        // 推流或播放url参数
+	Protocol      string `json:"protocol"`      // 流协议
 	Id            string `json:"id"`            // tcp链接唯一id
 	Duration      int    `json:"duration"`      // tcp链接维持时间, 单位秒
-	Params        string `json:"params"`        // 推流或播放url参数
 	Player        bool   `json:"player"`        // true: 播放器, false: 推流器
-	Schema        string `json:"schema"`        // 播放或推流的协议, 可能是 rtsp、rtmp、http
-	Protocol      string `json:"protocol"`      // 流协议
-	Stream        string `json:"stream"`        // 流id
 	TotalBytes    int    `json:"totalBytes"`    // 耗费上下行流量总和, 单位字节
-	Vhost         string `json:"vhost"`         // 流虚拟主机
 	Ip            string `json:"ip"`            // 客户端ip
 	Port          int    `json:"port"`          // 客户端端口号
 }

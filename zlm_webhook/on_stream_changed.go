@@ -8,10 +8,10 @@ import "github.com/thinkgos/zlm-http-api/zlm_def"
 type OnStreamChangedRequest struct {
 	HookIndex     int    `json:"hook_index"`
 	MediaServerId string `json:"mediaServerId"` // 服务器id, 通过配置文件设置
-	App           string `json:"app"`           // 流应用名
 	Schema        string `json:"schema"`        // 协议
-	Stream        string `json:"stream"`        // 流id
 	Vhost         string `json:"vhost"`         // 流虚拟主机
+	App           string `json:"app"`           // 流应用名
+	Stream        string `json:"stream"`        // 流id
 	Params        string `json:"params"`        // 流url参数
 	Regist        bool   `json:"regist"`        // 是否注册
 	// 以上注册/注销都有
