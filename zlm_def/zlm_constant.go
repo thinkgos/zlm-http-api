@@ -1,9 +1,16 @@
 package zlm_def
 
+// schema定义
 const (
-	Schema_RTMP = "rtmp"
-	Schema_RTSP = "rtsp"
-	Schema_RTP  = "rtp"
+	Schema_RTMP  = "rtmp"
+	Schema_RTMPS = "rtmps"
+	Schema_RTSP  = "rtsp"
+	Schema_RTSPS = "rtsps"
+	Schema_RTP   = "rtp"
+	Schema_HTTP  = "http"
+	Schema_HTTPS = "https"
+	Schema_WS    = "ws"
+	Schema_WSS   = "wss"
 )
 
 // 虚拟主机

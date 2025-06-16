@@ -9,11 +9,11 @@ import (
 	"github.com/thinkgos/zlm-http-api/zlm_def"
 )
 
-const testRecordType = 0 // 0: hls, 1: mp4
+const testRecordType = 1 // 0: hls, 1: mp4
 
 func Test_Record(t *testing.T) {
 	respStartRecord, err := client.StartRecord(context.Background(), &StartRecordRequest{
-		Secret:         testSecret,
+		Secret:         "",
 		Vhost:          zlm_def.DefaultVhost,
 		App:            testApp,
 		Stream:         testStream,
@@ -26,7 +26,7 @@ func Test_Record(t *testing.T) {
 	t.Logf("%#v\n", respStartRecord)
 
 	respIsRecordingTrue, err := client.IsRecording(context.Background(), &IsRecordingRequest{
-		Secret: testSecret,
+		Secret: "",
 		Vhost:  zlm_def.DefaultVhost,
 		App:    testApp,
 		Stream: testStream,
@@ -36,10 +36,10 @@ func Test_Record(t *testing.T) {
 	require.True(t, respIsRecordingTrue.Status)
 	t.Logf("%#v\n", respIsRecordingTrue)
 
-	time.Sleep(time.Second)
+	time.Sleep(time.Second * 5)
 
 	respStopRecord, err := client.StopRecord(context.Background(), &StopRecordRequest{
-		Secret: testSecret,
+		Secret: "",
 		Vhost:  zlm_def.DefaultVhost,
 		App:    testApp,
 		Stream: testStream,
@@ -50,7 +50,7 @@ func Test_Record(t *testing.T) {
 	t.Logf("%#v\n", respStopRecord)
 
 	respIsRecordingFalse, err := client.IsRecording(context.Background(), &IsRecordingRequest{
-		Secret: testSecret,
+		Secret: "",
 		Vhost:  zlm_def.DefaultVhost,
 		App:    testApp,
 		Stream: testStream,
@@ -62,7 +62,7 @@ func Test_Record(t *testing.T) {
 
 	if testRecordType == 1 {
 		respRecordFile, err := client.GetMp4RecordFile(context.Background(), &GetMp4RecordFileRequest{
-			Secret: testSecret,
+			Secret: "",
 			Vhost:  zlm_def.DefaultVhost,
 			App:    testApp,
 			Stream: testStream,
@@ -72,4 +72,17 @@ func Test_Record(t *testing.T) {
 		require.Equal(t, 0, respRecordFile.Code)
 		t.Logf("%#v\n", respRecordFile.Data)
 	}
+}
+
+func Test_DeleteRecordDirectory(t *testing.T) {
+	respRecordFile, err := client.DeleteRecordDirectory(context.Background(), &DeleteRecordDirectoryRequest{
+		Secret: "",
+		Vhost:  zlm_def.DefaultVhost,
+		App:    testApp,
+		Stream: testStream,
+		Period: "2025-06-16",
+	})
+	require.NoError(t, err)
+	require.Equal(t, 0, respRecordFile.Code)
+	t.Logf("%#v\n", respRecordFile)
 }
