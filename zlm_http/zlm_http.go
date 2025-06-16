@@ -10,8 +10,6 @@ import (
 	"resty.dev/v3"
 )
 
-
-
 var noRequestBodyMethods = map[string]struct{}{
 	http.MethodGet:     {},
 	http.MethodHead:    {},
@@ -66,7 +64,6 @@ func NewClient(opts ...ClientOption) *Client {
 		if r.RawResponse != nil {
 			body := r.RawResponse.Body
 			defer body.Close()
-			// fmt.Println(string(r.Bytes()))
 			r.RawResponse.Body = io.NopCloser(bytes.NewBuffer(r.Bytes()))
 		}
 		return nil

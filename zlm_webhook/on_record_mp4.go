@@ -16,6 +16,6 @@ type OnRecordMp4Request struct {
 	FileName      string  `json:"file_name"`     // 文件名, 例: 2025-06-15/15/51-28_18.ts
 	FileSize      int     `json:"file_size"`     // 文件大小
 	StartTime     int     `json:"start_time"`    // 开始录制时间戳, 单位秒
-	TimeLen       float64 `json:"time_len"`      // 录制时长，单位秒
+	TimeLen       float64 `json:"time_len"`      // 录制时长, 单位秒
 }
 type OnRecordMp4Reply = DefaultReply

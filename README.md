@@ -6,7 +6,7 @@
 - [x] 1. `/index/api/getThreadsLoad` 获取各 epoll(或 select)线程负载以及延时
 - [x] 2. `/index/api/getWorkThreadsLoad` 获取各后台 epoll(或 select)线程负载以及延时
 - [x] 3. `/index/api/getServerConfig` 获取服务器配置
-- [ ] 4. `/index/api/setServerConfig` 设置服务器配置
+- [x] 4. `/index/api/setServerConfig` 设置服务器配置
 - [x] 5. `/index/api/restartServer` 重启服务器, 只有Daemon方式才能重启, 否则是直接关闭!
 - [x] 6. `/index/api/getMediaList` 获取流列表, 可选筛选参数
 - [ ] 7. ~~`/index/api/close_stream`~~ 关闭流(已过期, 请使用close_streams接口替换)
@@ -14,10 +14,12 @@
 - [x] 9. `/index/api/getAllSession` 获取所有TcpSession列表(获取所有tcp客户端相关信息)
 - [x] 10. `/index/api/kick_session` 断开tcp连接, 比如说可以断开rtsp、rtmp播放器等
 - [x] 11. `/index/api/kick_sessions` 断开tcp连接, 比如说可以断开rtsp、rtmp播放器等
-- [ ] 12. `/index/api/addStreamProxy` 动态添加 rtsp/rtmp/hls/http-ts/http-flv 拉流代理(只支持 H264/H265/aac/G711/opus 负载)
-- [ ] 13. `/index/api/delStreamProxy` 关闭拉流代理(流注册成功后, 也可以使用close_streams接口替代)
-- [ ] 14. `/index/api/addFFmpegSource` 通过 fork FFmpeg 进程的方式拉流代理, 支持任意协议
-- [ ] 15. `/index/api/delFFmpegSource` 关闭 ffmpeg 拉流代理(流注册成功后, 也可以使用close_streams接口替代)
+- [x] 12. `/index/api/addStreamProxy` 动态添加拉流代理rtsp/rtmp/hls/http-ts/http-flv(只支持 H264/H265/aac/G711/opus 负载)
+- [x] 13. `/index/api/delStreamProxy` 关闭拉流代理(流注册成功后, 也可以使用close_streams接口替代)
+- [x] 13.1. `/index/api/listStreamProxy` 获取拉流代理列表
+- [x] 14. `/index/api/addFFmpegSource` 通过 fork FFmpeg 进程的方式拉流代理, 支持任意协议
+- [x] 15. `/index/api/delFFmpegSource` 关闭 ffmpeg 拉流代理(流注册成功后, 也可以使用close_streams接口替代)
+- [x] 15.1 `/index/api/listFFmpegSource` 获取FFmpeg代理
 - [ ] 16. ~~`/index/api/isMediaOnline`~~ 判断直播流是否在线(已过期, 请使用getMediaList接口替代)
 - [ ] 17. ~~`/index/api/getMediaInfo`~~ 获取流相关信息(已过期, 请使用getMediaList接口替代)
 - [x] 18. `/index/api/getRtpInfo` 获取rtp推流信息

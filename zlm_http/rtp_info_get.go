@@ -9,7 +9,7 @@ type GetRtpInfoRequest struct {
 	Secret   string `json:"secret,omitempty"` // O, api操作密钥(配置文件配置), 未填则忽略, 可设置全局参数或token来统一传.
 	Vhost    string `json:"vhost,omitempty"`  // O, 虚拟主机, 默认: __defaultVhost__
 	App      string `json:"app,omitempty"`    // O, 流应用名, 默认: rtp
-	StreamId string `json:"stream_id"`        // , RTP 的 ssrc，16 进制字符串或者是流的 id(openRtpServer 接口指定)
+	StreamId string `json:"stream_id"`        // , RTP 的 ssrc, 16 进制字符串或者是流的 id(openRtpServer 接口指定)
 
 }
 type GetRtpInfoReply struct {

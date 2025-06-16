@@ -27,9 +27,9 @@ type MediaEntry struct {
 	Stream           string              `json:"stream"`           // 流id
 	Vhost            string              `json:"vhost"`            // 流虚拟主机
 	ReaderCount      int                 `json:"readerCount"`      // 本协议观看人数
-	TotalReaderCount int                 `json:"totalReaderCount"` // 观看总人数，包括hls/rtsp/rtmp/http-flv/ws-flv/rtc
+	TotalReaderCount int                 `json:"totalReaderCount"` // 观看总人数, 包括hls/rtsp/rtmp/http-flv/ws-flv/rtc
 	OriginSock       *zlm_def.OriginSock `json:"originSock"`       // 客户端和服务器网络信息, 可能为null类型
-	OriginType       int                 `json:"originType"`       // 产生源类型，包括 unknown = 0,rtmp_push=1,rtsp_push=2,rtp_push=3,pull=4,ffmpeg_pull=5,mp4_vod=6,device_chn=7,rtc_push=8
+	OriginType       int                 `json:"originType"`       // 产生源类型, 包括 unknown = 0,rtmp_push=1,rtsp_push=2,rtp_push=3,pull=4,ffmpeg_pull=5,mp4_vod=6,device_chn=7,rtc_push=8
 	OriginTypeStr    string              `json:"originTypeStr"`    // 产生源类型字符串
 	OriginUrl        string              `json:"originUrl"`        // 产生源的url
 	Params           string              `json:"params"`           // 流url参数
