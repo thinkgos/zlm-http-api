@@ -18,5 +18,4 @@ func Test_Download(t *testing.T) {
 		SaveFile: "",
 	})
 	require.NoError(t, err)
-	// t.Logf("%#v\n", resp.Data)
 }

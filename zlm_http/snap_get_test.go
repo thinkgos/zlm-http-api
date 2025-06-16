@@ -19,5 +19,4 @@ func Test_GetSnap(t *testing.T) {
 		Filename:   testFilename,
 	})
 	require.NoError(t, err)
-	// t.Logf("%#v\n", resp.Data)
 }

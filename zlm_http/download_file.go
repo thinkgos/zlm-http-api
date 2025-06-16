@@ -9,7 +9,7 @@ import (
 //* 下载文件
 
 type DownloadFileRequest struct {
-	FilePath string `json:"url"`       // M, 文件绝对路径，根据文件名生成Content-Type；该接口将触发on_http_access hook
+	FilePath string `json:"file_path"` // M, 文件绝对路径，根据文件名生成Content-Type；该接口将触发on_http_access hook
 	SaveFile string `json:"save_file"` // O, 浏览器下载文件后保存文件名；可选参数
 }
 
