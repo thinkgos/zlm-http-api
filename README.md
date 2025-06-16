@@ -17,6 +17,7 @@
 - [x] 12. `/index/api/addStreamProxy` 动态添加拉流代理rtsp/rtmp/hls/http-ts/http-flv(只支持 H264/H265/aac/G711/opus 负载)
 - [x] 13. `/index/api/delStreamProxy` 关闭拉流代理(流注册成功后, 也可以使用close_streams接口替代)
 - [x] 13.1. `/index/api/listStreamProxy` 获取拉流代理列表
+- [x] 13.2. `/index/api/getProxyInfo` 获取拉流代理信息
 - [x] 14. `/index/api/addFFmpegSource` 通过 fork FFmpeg 进程的方式拉流代理, 支持任意协议
 - [x] 15. `/index/api/delFFmpegSource` 关闭 ffmpeg 拉流代理(流注册成功后, 也可以使用close_streams接口替代)
 - [x] 15.1 `/index/api/listFFmpegSource` 获取FFmpeg代理

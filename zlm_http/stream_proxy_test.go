@@ -22,6 +22,15 @@ func Test_ListStreamProxy(t *testing.T) {
 	t.Logf("%#v\n", resp.Data)
 }
 
+func Test_GetStreamProxyInfo(t *testing.T) {
+	resp, err := client.GetStreamProxyInfo(context.Background(), &GetStreamProxyInfoRequest{
+		Secret: "",
+		Key:    testStreamProxyKey,
+	})
+	require.NoError(t, err)
+	t.Logf("%#v\n", resp.Data)
+}
+
 func Test_AddStreamProxy(t *testing.T) {
 	resp, err := client.AddStreamProxy(context.Background(), &AddStreamProxyRequest{
 		Secret: "",
