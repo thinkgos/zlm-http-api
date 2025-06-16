@@ -200,7 +200,7 @@ func (c *Client) EncodeQuery(v any) (string, error) {
 	return vv.Encode(), nil
 }
 
-func (c *Client) DownloadFile(ctx context.Context, method, path string, req any, filename string, opts ...CallOption) error {
+func (c *Client) Download(ctx context.Context, method, path string, req any, filename string, opts ...CallOption) error {
 	var in any
 
 	settings := c.CallSetting(path, opts...)

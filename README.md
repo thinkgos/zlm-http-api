@@ -28,6 +28,7 @@
 - [x] 20. `/index/api/startRecord` 开始录制hls或MP4
 - [x] 21. `/index/api/stopRecord` 停止录制流
 - [x] 22. `/index/api/isRecording` 获取流录制状态
+- [x] 22.1. `/index/api/deleteRecordDirectory` 删除录像文件夹
 - [x] 23. `/index/api/getSnap` 获取截图或生成实时截图并返回
 - [x] 24. `/index/api/openRtpServer` 创建GB28181 RTP 接收端口, 如果该端口接收数据超时, 则会自动被回收(不用调用 closeRtpServer 接口)
 - [x] 25. `/index/api/closeRtpServer` 关闭 GB28181 RTP接收端口
@@ -41,6 +42,10 @@
 - [x] 31.2 `/index/api/getProxyPusherInfo` 获取推流代理信息
 - [x] 32. `index/api/version` 获取版本信息, 如分支, commit id, 编译时间
 - [x] 33. `/index/api/getMediaPlayerList` 获取某个流观看者列表
+
+- [x] 100. `/index/api/downloadFile` 下载文件, 直接下载, 建议加鉴权, 避免任意文件被下载.
+  - `file_path`(必选参数): 文件绝对路径, 根据文件名生成Content-Type该接口将触发on_http_access hook.
+  - `save_name`(可选参数): 浏览器下载文件后保存文件名.
 
 ## WebHook api
 

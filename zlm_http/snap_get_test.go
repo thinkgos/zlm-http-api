@@ -20,5 +20,4 @@ func Test_GetSnap(t *testing.T) {
 	})
 	require.NoError(t, err)
 	// t.Logf("%#v\n", resp.Data)
-
 }

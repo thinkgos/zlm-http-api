@@ -17,5 +17,5 @@ type GetSnapRequest struct {
 }
 
 func (c *Client) GetSnap(ctx context.Context, req *GetSnapRequest, opts ...CallOption) error {
-	return c.DownloadFile(ctx, http.MethodGet, "/index/api/getSnap", req, req.Filename, opts...)
+	return c.Download(ctx, http.MethodGet, "/index/api/getSnap", req, req.Filename, opts...)
 }
