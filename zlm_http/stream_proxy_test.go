@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	testStreamProxyVhost  = zlm_def.DefaultVhost
+	testStreamProxyVhost  = zlm_def.Vhost_Default
 	testStreamProxyApp    = "live"
 	testStreamProxyStream = "dahua"
 	testStreamProxyUrl    = "rtsp://admin:admin123@10.110.18.75:554/cam/realmonitor?channel=1&subtype=0"

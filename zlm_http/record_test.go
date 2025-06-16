@@ -9,12 +9,12 @@ import (
 	"github.com/thinkgos/zlm-http-api/zlm_def"
 )
 
-const testRecordType = 1 // 0: hls, 1: mp4
+const testRecordType = zlm_def.Record_Type_Hls
 
 func Test_Record(t *testing.T) {
 	respStartRecord, err := client.StartRecord(context.Background(), &StartRecordRequest{
 		Secret:         "",
-		Vhost:          zlm_def.DefaultVhost,
+		Vhost:          zlm_def.Vhost_Default,
 		App:            testApp,
 		Stream:         testStream,
 		Type:           testRecordType,
@@ -27,7 +27,7 @@ func Test_Record(t *testing.T) {
 
 	respIsRecordingTrue, err := client.IsRecording(context.Background(), &IsRecordingRequest{
 		Secret: "",
-		Vhost:  zlm_def.DefaultVhost,
+		Vhost:  zlm_def.Vhost_Default,
 		App:    testApp,
 		Stream: testStream,
 		Type:   testRecordType,
@@ -40,7 +40,7 @@ func Test_Record(t *testing.T) {
 
 	respStopRecord, err := client.StopRecord(context.Background(), &StopRecordRequest{
 		Secret: "",
-		Vhost:  zlm_def.DefaultVhost,
+		Vhost:  zlm_def.Vhost_Default,
 		App:    testApp,
 		Stream: testStream,
 		Type:   testRecordType,
@@ -51,7 +51,7 @@ func Test_Record(t *testing.T) {
 
 	respIsRecordingFalse, err := client.IsRecording(context.Background(), &IsRecordingRequest{
 		Secret: "",
-		Vhost:  zlm_def.DefaultVhost,
+		Vhost:  zlm_def.Vhost_Default,
 		App:    testApp,
 		Stream: testStream,
 		Type:   testRecordType,
@@ -63,7 +63,7 @@ func Test_Record(t *testing.T) {
 	if testRecordType == 1 {
 		respRecordFile, err := client.GetMp4RecordFile(context.Background(), &GetMp4RecordFileRequest{
 			Secret: "",
-			Vhost:  zlm_def.DefaultVhost,
+			Vhost:  zlm_def.Vhost_Default,
 			App:    testApp,
 			Stream: testStream,
 			Period: "2025-06",
@@ -77,7 +77,7 @@ func Test_Record(t *testing.T) {
 func Test_DeleteRecordDirectory(t *testing.T) {
 	respRecordFile, err := client.DeleteRecordDirectory(context.Background(), &DeleteRecordDirectoryRequest{
 		Secret: "",
-		Vhost:  zlm_def.DefaultVhost,
+		Vhost:  zlm_def.Vhost_Default,
 		App:    testApp,
 		Stream: testStream,
 		Period: "2025-06-16",

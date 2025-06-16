@@ -10,7 +10,7 @@ import (
 
 const (
 	testStreamPusherProxySchema    = zlm_def.Schema_RTMP
-	testStreamPusherProxyVhost     = zlm_def.DefaultVhost
+	testStreamPusherProxyVhost     = zlm_def.Vhost_Default
 	testStreamPusherProxyApp       = "live"
 	testStreamPusherProxySrcStream = testStream
 	testStreamPusherProxyDstStream = "chibo02"

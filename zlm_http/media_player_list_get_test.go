@@ -11,7 +11,7 @@ import (
 func Test_GetMediaPlayerList(t *testing.T) {
 	resp, err := client.GetMediaPlayerList(context.Background(), &GetMediaPlayerListRequest{
 		Schema: testSchema,
-		Vhost:  zlm_def.DefaultVhost,
+		Vhost:  zlm_def.Vhost_Default,
 		App:    testApp,
 		Stream: testStream,
 	})

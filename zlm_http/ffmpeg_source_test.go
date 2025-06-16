@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	testFFmpegSourceVhost   = zlm_def.DefaultVhost
+	testFFmpegSourceVhost   = zlm_def.Vhost_Default
 	testFFmpegSource_SrcUrl = "rtsp://admin:admin123@10.110.18.75:554/cam/realmonitor?channel=1&subtype=0"
 	testFFmpegSource_DstUrl = "rtmp://" + testZLMediaKitIp + "/live/dahua"
 	testFFMpegCmdKey        = "ffmpeg.cmd"

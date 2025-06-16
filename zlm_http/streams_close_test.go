@@ -12,7 +12,7 @@ func Test_CloseStreams(t *testing.T) {
 	resp, err := client.CloseStreams(context.Background(), &CloseStreamsRequest{
 		Secret: "",
 		Schema: testSchema,
-		Vhost:  zlm_def.DefaultVhost,
+		Vhost:  zlm_def.Vhost_Default,
 		App:    testApp,
 		Stream: testStream,
 		Force:  zlm_def.ToPtr(1),

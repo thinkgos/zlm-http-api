@@ -11,7 +11,7 @@ import (
 func Test_GetRtpInfo(t *testing.T) {
 	resp, err := client.GetRtpInfo(context.Background(), &GetRtpInfoRequest{
 		Secret:   "",
-		Vhost:    zlm_def.DefaultVhost,
+		Vhost:    zlm_def.Vhost_Default,
 		App:      testApp,
 		StreamId: testStream,
 	})

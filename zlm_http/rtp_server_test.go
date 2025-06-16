@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
+	"github.com/thinkgos/zlm-http-api/zlm_def"
 )
 
 func Test_RtpServer(t *testing.T) {
@@ -18,7 +19,7 @@ func Test_RtpServer(t *testing.T) {
 		// Vhost:     zlm_def.DefaultVhost,
 		// App:       testApp,
 		StreamId:  testStream,
-		TcpMode:   1,
+		TcpMode:   zlm_def.Rtp_TcpMode_Udp,
 		Port:      0,
 		OnlyTrack: 0,
 		Ssrc:      0,
