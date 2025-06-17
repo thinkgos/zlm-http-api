@@ -1,8 +1,9 @@
 package zlm_def
 
+// bool定义
 const (
-	Boolean_False = 0
-	Boolean_True  = 1
+	False = 0
+	True  = 1
 )
 
 // schema定义
@@ -48,12 +49,12 @@ const (
 // rtsp的推/拉流时的方式
 const (
 	Rtp_Type_Tcp       = 0 // tcp
-	Rtp_Type_Udp           // udp
-	Rtp_Type_Multicast     // 组播
+	Rtp_Type_Udp       = 1 // udp
+	Rtp_Type_Multicast = 2 // 组播
 )
 
 // 录制类型
 const (
-	Record_Type_Hls = 0
-	Record_Type_Mp4 = 1
+	Record_Type_Hls = 0 // hls
+	Record_Type_Mp4 = 1 // mp4
 )
