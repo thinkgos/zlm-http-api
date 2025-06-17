@@ -63,7 +63,9 @@ func NewClient(opts ...ClientOption) *Client {
 		}
 		if r.RawResponse != nil {
 			body := r.RawResponse.Body
-			defer body.Close()
+			defer func() {
+				_ = body.Close()
+			}()
 			r.RawResponse.Body = io.NopCloser(bytes.NewBuffer(r.Bytes()))
 		}
 		return nil
@@ -121,9 +123,12 @@ func (c *Client) Invoke(ctx context.Context, method, path string, in, out any, s
 	if err != nil {
 		return err
 	}
-	defer resp.RawResponse.Body.Close()
+	defer func() {
+		_ = resp.RawResponse.Body.Close()
+	}()
+
 	if resp.IsError() {
-		return &ErrorReply{
+		return &ReplyError{
 			Code:   resp.StatusCode(),
 			Body:   resp.Bytes(),
 			Header: resp.Header(),
@@ -240,9 +245,11 @@ func (c *Client) Download(ctx context.Context, method, path string, req any, fil
 	if err != nil {
 		return err
 	}
-	defer resp.RawResponse.Body.Close()
+	defer func() {
+		_ = resp.RawResponse.Body.Close()
+	}()
 	if resp.IsError() {
-		return &ErrorReply{
+		return &ReplyError{
 			Code:   resp.StatusCode(),
 			Body:   resp.Bytes(),
 			Header: resp.Header(),

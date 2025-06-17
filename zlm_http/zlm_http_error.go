@@ -5,12 +5,12 @@ import (
 	"net/http"
 )
 
-type ErrorReply struct {
+type ReplyError struct {
 	Code   int
 	Body   []byte
 	Header http.Header
 }
 
-func (e *ErrorReply) Error() string {
+func (e *ReplyError) Error() string {
 	return fmt.Sprintf("Invoke: Status Code: %d, Status Text: %s", e.Code, http.StatusText(e.Code))
 }

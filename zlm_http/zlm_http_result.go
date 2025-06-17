@@ -24,18 +24,18 @@ func (b BaseResult) InspectError() error {
 	if b.Code == Code_Success {
 		return nil
 	}
-	return &ErrorBusiness{
+	return &BusinessError{
 		Code: b.Code,
 		Msg:  b.Msg,
 	}
 }
 
-type ErrorBusiness struct {
+type BusinessError struct {
 	Code int    `json:"code"` // 执行结果, 0: 成功, 其它为失败
 	Msg  string `json:"msg"`  // 失败消息
 }
 
-func (e *ErrorBusiness) Error() string {
+func (e *BusinessError) Error() string {
 	if e.Code == Code_Success {
 		return "<nil>"
 	}

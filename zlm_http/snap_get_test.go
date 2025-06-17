@@ -11,7 +11,9 @@ import (
 func Test_GetSnap(t *testing.T) {
 	const testFilename = "./test.jpg"
 
-	defer os.Remove(testFilename)
+	defer func() {
+		_ = os.Remove(testFilename)
+	}()
 	err := client.GetSnap(context.Background(), &GetSnapRequest{
 		Url:        "12312",
 		TimeoutSec: 10,
