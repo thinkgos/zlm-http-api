@@ -7,6 +7,7 @@ const (
 	testSecret  = "ynaHOQRQaXCBCZn50hreQ8xHzqdDr8eh"
 	testSchema  = "rtsp"
 	testStream  = "chibo01"
+	testStream2 = "chibo02"
 	testApp     = "live"
 )
 

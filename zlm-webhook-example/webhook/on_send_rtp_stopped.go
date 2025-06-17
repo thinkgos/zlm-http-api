@@ -10,13 +10,13 @@ import (
 // OnSendRtpStopped implements zlm_webhook.Webhook.
 func (w *ZlmWebhook) OnSendRtpStopped(ctx context.Context, req *zlm_webhook.OnSendRtpStoppedRequest) (*zlm_webhook.OnSendRtpStoppedReply, error) {
 	logger.OnDebugContext(ctx).
-		// Dict("media",
-		// 	MediaServerId(req.MediaServerId),
-		// 	App(req.App),
-		// 	Vhost(req.Vhost),
-		// 	StreamId(req.Stream),
-		// ).
+		Dict("media",
+			MediaServerId(req.MediaServerId),
+			App(req.App),
+			Vhost(req.Vhost),
+			StreamId(req.Stream),
+		).
 		Any("payload", req).
 		Msg("OnSendRtpStopped")
-	return &zlm_webhook.OnSendRtpStoppedReply{}, nil
+	return zlm_webhook.NewDefaultSuccessReply(), nil
 }

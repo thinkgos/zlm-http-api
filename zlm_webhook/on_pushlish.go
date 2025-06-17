@@ -15,8 +15,8 @@ type OnPublishRequest struct {
 	Id            string `json:"id"`            // tcp链接唯一id
 	Ip            string `json:"ip"`            // 推流器ip
 	Port          int    `json:"port"`          // 推流器端口号
-	OriginType    int    `json:"originType"`    // 原始类型
-	OriginTypeStr string `json:"originTypeStr"` // 原始类型字符串
+	OriginType    int    `json:"originType"`    // 产生源类型
+	OriginTypeStr string `json:"originTypeStr"` // 产生源类型字符串
 }
 type OnPublishReply struct {
 	Code           int     `json:"code"`                       // 错误代码, 0: 成功

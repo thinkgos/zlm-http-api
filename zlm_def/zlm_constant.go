@@ -58,3 +58,15 @@ const (
 	Record_Type_Hls = 0 // hls
 	Record_Type_Mp4 = 1 // mp4
 )
+
+const (
+	OriginType_Unknown    = 0 // unknown
+	OriginType_RtmpPush   = 1 // rtmp_push
+	OriginType_RtspPush   = 2 // rtsp_push
+	OriginType_RtpPush    = 3 // rtp_push
+	OriginType_Pull       = 4 // pull
+	OriginType_FfmpegPull = 5 // ffmpeg_pull
+	OriginType_Mp4Vod     = 6 // mp4_vod
+	OriginType_DeviceChn  = 7 // device_chn
+	OriginType_RtcPush    = 8 // rtc_push
+)

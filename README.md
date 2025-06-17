@@ -33,8 +33,8 @@
 - [x] 24. `/index/api/openRtpServer` 创建GB28181 RTP 接收端口, 如果该端口接收数据超时, 则会自动被回收(不用调用 closeRtpServer 接口)
 - [x] 25. `/index/api/closeRtpServer` 关闭 GB28181 RTP接收端口
 - [x] 26. `/index/api/listRtpServer` 获取 openRtpServer 接口创建的所有 RTP 服务器
-- [ ] 27. `/index/api/startSendRtp` 作为GB28181客户端, 启动 ps-rtp 推流, 支持rtp/udp方式.
-- [ ] 28. `/index/api/stopSendRtp` 作为GB28181客户端, 停止GB28181 ps-rtp 推流
+- [x] 27. `/index/api/startSendRtp` 作为GB28181客户端, 启动 ps-rtp 推流, 支持rtp/udp方式.
+- [x] 28. `/index/api/stopSendRtp` 作为GB28181客户端, 停止GB28181 ps-rtp 推流
 - [x] 29. `/index/api/getStatistic` 获取主要对象个数统计, 主要用于分析内存性能.
 - [x] 30. `/index/api/addStreamPusherProxy` 添加rtsp/rtmp主动推流代理(把本服务器的直播流推送到其他服务器去)
 - [x] 31. `/index/api/delStreamPusherProxy` 关闭推流代理(可以使用close_streams接口关闭源直播流也可以停止推流)
@@ -58,7 +58,7 @@ Link: [WebHook api](https://docs.zlmediakit.com/zh/guide/media_server/web_hook_a
 - [x] `on_record_mp4` 录制mp4完成后通知事件; 此事件对回复不敏感.
 - [x] `on_record_ts` 录制hls完成后通知事件; 此事件对回复不敏感.
 - [x] `on_rtp_server_timeout` 调用openRtpServer接口, rtp server长时间未收到数据, 执行此 web hook, 对回复不敏感.
-- [ ] `on_send_rtp_stopped` 发送rtp(startSendRtp)被动关闭时回调
+- [x] `on_send_rtp_stopped` 发送rtp(startSendRtp)被动关闭时回调
 - [x] `on_rtsp_auth` rtsp专用的鉴权事件, 先触发on_rtsp_realm事件然后才会触发on_rtsp_auth事件.
 - [x] `on_rtsp_realm` 该rtsp流是否开启rtsp专用方式的鉴权事件, 开启后才会触发on_rtsp_auth事件
 - [x] `on_shell_login` shell登录鉴权, telnet调试方式
