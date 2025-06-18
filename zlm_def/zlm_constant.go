@@ -33,6 +33,22 @@ const (
 	CodecId_G711U = 4 // G711U
 )
 
+func CodecIdString(codecId int) string {
+	switch codecId {
+	case CodecId_H264:
+		return "H264"
+	case CodecId_H265:
+		return "H265"
+	case CodecId_AAC:
+		return "AAC"
+	case CodecId_G711A:
+		return "G711A"
+	case CodecId_G711U:
+		return "G711U"
+	}
+	return "undefined"
+}
+
 // 编解码类型
 const (
 	CodecType_Video = 0 // Video
