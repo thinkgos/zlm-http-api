@@ -12,7 +12,6 @@ const (
 	testFFmpegSourceVhost   = zlm_def.Vhost_Default
 	testFFmpegSource_SrcUrl = "rtsp://admin:admin123@10.110.18.75:554/cam/realmonitor?channel=1&subtype=0"
 	testFFmpegSource_DstUrl = "rtmp://" + testZLMediaKitIp + "/live/dahua"
-	testFFMpegCmdKey        = "ffmpeg.cmd"
 )
 
 func Test_ListFFmpegSource(t *testing.T) {
@@ -25,10 +24,10 @@ func Test_AddFFmpegSource(t *testing.T) {
 		Secret:       "",
 		SrcUrl:       testFFmpegSource_SrcUrl,
 		DstUrl:       testFFmpegSource_DstUrl,
-		FFmpegCmdKey: testFFMpegCmdKey,
 		TimeoutMs:    10000,
-		EnableHls:    0,
-		EnableMp4:    0,
+		EnableHls:    zlm_def.False,
+		EnableMp4:    zlm_def.False,
+		FFmpegCmdKey: nil,
 	})
 	require.NoError(t, err)
 	t.Logf("%#v\n", resp.Data)
@@ -49,10 +48,10 @@ func Test_FFmpegSource(t *testing.T) {
 		Secret:       "",
 		SrcUrl:       testFFmpegSource_SrcUrl,
 		DstUrl:       testFFmpegSource_DstUrl,
-		FFmpegCmdKey: testFFMpegCmdKey,
 		TimeoutMs:    10000,
-		EnableHls:    0,
-		EnableMp4:    0,
+		EnableHls:    zlm_def.False,
+		EnableMp4:    zlm_def.False,
+		FFmpegCmdKey: nil,
 	})
 	require.NoError(t, err)
 	t.Logf("%#v\n", respAddFFmpegSource.Data)

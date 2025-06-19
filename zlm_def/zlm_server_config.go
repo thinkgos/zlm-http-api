@@ -52,7 +52,7 @@ type ServerConfig struct {
 	// 此参数不应大于播放器超时时间;单位毫秒
 	Protocol_ContinuePushMs int `json:"protocol.continue_push_ms,string"`
 
-	// 平滑发送定时器间隔, 单位毫秒, 置0则关闭；开启后影响cpu性能同时增加内存
+	// 平滑发送定时器间隔, 单位毫秒, 置0则关闭; 开启后影响cpu性能同时增加内存
 	// 该配置开启后可以解决一些流发送不平滑导致zlmediakit转发也不平滑的问题
 	Protocol_PacedSenderMs int `json:"protocol.paced_sender_ms,string"`
 
@@ -173,7 +173,7 @@ type ServerConfig struct {
 	Hook_OnRtspRealm     string `json:"hook.on_rtsp_realm"`
 	Hook_OnShellLogin    string `json:"hook.on_shell_login"`
 	Hook_OnStreamChanged string `json:"hook.on_stream_changed"`
-	// 过滤on_stream_changed hook的协议类型, 可以选择只监听某些感兴趣的协议；置空则不过滤协议
+	// 过滤on_stream_changed hook的协议类型, 可以选择只监听某些感兴趣的协议; 置空则不过滤协议
 	Hook_StreamChangedSchemas string `json:"hook.stream_changed_schemas"`
 	Hook_OnStreamNoneReader   string `json:"hook.on_stream_none_reader"`
 	Hook_OnStreamNotFound     string `json:"hook.on_stream_not_found"`
@@ -202,7 +202,7 @@ type ServerConfig struct {
 	// http-ts方式: http://127.0.0.1:80/%s/%s.live.ts
 	// 支持多个源站, 不同源站通过分号(;)分隔
 	Cluster_OriginUrl string `json:"cluster.origin_url"`
-	// 溯源总超时时长, 单位秒, float型；假如源站有3个, 那么单次溯源超时时间为timeout_sec除以3
+	// 溯源总超时时长, 单位秒, float型; 假如源站有3个, 那么单次溯源超时时间为timeout_sec除以3
 	// 单次溯源超时时间不要超过general.maxStreamWaitMS配置
 	Cluster_TimeoutSec string `json:"cluster.timeout_sec"`
 	// 溯源失败尝试次数, -1时永久尝试
@@ -323,7 +323,7 @@ type ServerConfig struct {
 	// rtp opus 负载的pt
 	RtpProxy_OpusPt string `json:"rtp_proxy.opus_pt"`
 	// startSendRtp、startRecord相关功能是否提前开启gop缓存优化级联秒开体验, 默认开启, 并缓存1个GOP
-	// 如果不调用startSendRtp、startRecord后相关接口, 可以置0节省内存；如果缓存多个gop, 可以加大该参数
+	// 如果不调用startSendRtp、startRecord后相关接口, 可以置0节省内存; 如果缓存多个gop, 可以加大该参数
 	RtpProxy_GopCache int `json:"rtp_proxy.gop_cache,string"`
 	// 国标发送g711 rtp 打包时, 每个包的语音时长是多少, 默认是100 ms, 范围为20~180ms(gb28181-2016, c.2.4规定),
 	// 最好为20 的倍数, 程序自动向20的倍数取整
