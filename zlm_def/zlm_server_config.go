@@ -338,7 +338,7 @@ type ServerConfig struct {
 	Rtc_TimeoutSec int `json:"rtc.timeoutSec,string"`
 	// 本机对rtc客户端的可见ip, 作为服务器时一般为公网ip, 可有多个, 用','分开, 当置空时, 会自动获取网卡ip
 	// 同时支持环境变量, 以$开头, 如"$EXTERN_IP"; 请参考：https://github.com/ZLMediaKit/ZLMediaKit/pull/1786
-	Rtc_ExternIP string `json:"rtc.externIP"`
+	Rtc_ExternIp string `json:"rtc.externIP"`
 	// rtc udp服务器监听端口号, 所有rtc客户端将通过该端口传输stun/dtls/srtp/srtcp数据,
 	// 该端口是多线程的, 同时支持客户端网络切换导致的连接迁移
 	// 需要注意的是, 如果服务器在nat内, 需要做端口映射时, 必须确保外网映射端口跟该端口一致

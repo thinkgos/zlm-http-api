@@ -103,6 +103,19 @@ Link: [WebHook api](https://docs.zlmediakit.com/zh/guide/media_server/web_hook_a
 `TSMediaSource` 支持 http-ts 播放、ws-ts 播放.
 `FMP4MediaSource`支持 http-fmp4 播放、ws-fmp4 播放.
 
+## 主流摄像头rtsp地址
+
+### 大华
+  
+`rtsp://<username>:<password>@<ip>:<port>/cam/realmonitor?channel=<channel>&subtype=<subtype>`
+
+- `username`为登录用户名
+- `password`为登录密码
+- `ip`为摄像头ip地址
+- `port`为摄像头端口号, 默认`554`可省略
+- `channel`为通道号, 通常从1开始,
+- `subtype`为码流类型, 一般为`0`表示主码流(高清), `1`表示子码流(低码率).
+
 ## License
 
 [MIT](LICENSE)
