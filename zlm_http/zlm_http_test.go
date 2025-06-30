@@ -16,8 +16,8 @@ var client = func() *Client {
 	c.Deref().
 		SetBaseURL(testBaseUrl).
 		SetQueryParam("secret", testSecret).
-		SetDebug(true).
-		SetGenerateCurlCmd(true).
-		SetDebugLogCurlCmd(true)
+		// SetGenerateCurlCmd(true).
+		// SetDebugLogCurlCmd(true).
+		SetDebug(true)
 	return c
 }()
