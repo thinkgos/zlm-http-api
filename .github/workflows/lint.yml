@@ -5,6 +5,9 @@ on:
     paths-ignore:
       - "**.md"
 
+permissions:
+  contents: read
+
 jobs:
   golang-ci:
     name: GolangCi-Lint
@@ -19,6 +22,6 @@ jobs:
         uses: actions/checkout@v5
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@v8
-        with: 
+        with:
           args: -E misspell,whitespace,unconvert,noctx,musttag,errchkjson,errname,exhaustive,exptostd
           version: latest
