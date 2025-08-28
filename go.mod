@@ -3,7 +3,7 @@ module github.com/thinkgos/zlm-http-api
 go 1.24.0
 
 require (
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 	github.com/thinkgos/encoding v1.3.0
 	resty.dev/v3 v3.0.0-beta.3
 )
