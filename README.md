@@ -109,12 +109,23 @@ Link: [WebHook api](https://docs.zlmediakit.com/zh/guide/media_server/web_hook_a
   
 `rtsp://<username>:<password>@<ip>:<port>/cam/realmonitor?channel=<channel>&subtype=<subtype>`
 
-- `username`为登录用户名
-- `password`为登录密码
-- `ip`为摄像头ip地址
-- `port`为摄像头端口号, 默认`554`可省略
-- `channel`为通道号, 通常从1开始,
-- `subtype`为码流类型, 一般为`0`表示主码流(高清), `1`表示子码流(低码率).
+- `username`: 登录用户名
+- `password`: 登录密码
+- `ip`: 摄像头ip地址
+- `port`: 摄像头端口号, 默认`554`可省略
+- `channel`: 通道号, 通常从1开始,
+- `subtype`: 码流类型, 一般为`0`表示主码流(高清), `1`表示子码流(低码率).
+
+### 宇视
+
+`rtsp://<username>:<password>@<ip>:<port>/Streaming/Channels/<channel>0<stream>`
+
+- `username`: 登录用户名
+- `password`: 登录密码
+- `ip`: 摄像头ip地址
+- `port`: 摄像头端口号, 默认`554`可省略
+- `channel`: 通道号（1 表示第一路，2 表示第二路）
+- `stream`: 码流类型（1 表示主码流，2 表示子码流）
 
 ## License
 
