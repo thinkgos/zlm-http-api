@@ -124,8 +124,8 @@ Link: [WebHook api](https://docs.zlmediakit.com/zh/guide/media_server/web_hook_a
 - `password`: 登录密码
 - `ip`: 摄像头ip地址
 - `port`: 摄像头端口号, 默认`554`可省略
-- `channel`: 通道号（1 表示第一路，2 表示第二路）
-- `stream`: 码流类型（1 表示主码流，2 表示子码流）
+- `channel`: 通道号(1表示第一路, 2表示第二路)
+- `stream`: 码流类型(1表示主码流, 2表示子码流)
 
 ## License
 
