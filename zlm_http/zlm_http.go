@@ -127,7 +127,7 @@ func (c *Client) Invoke(ctx context.Context, method, path string, in, out any, s
 		_ = resp.RawResponse.Body.Close()
 	}()
 
-	if resp.IsError() {
+	if resp.IsStatusFailure() {
 		return &ReplyError{
 			Code:   resp.StatusCode(),
 			Body:   resp.Bytes(),
@@ -221,7 +221,7 @@ func (c *Client) Download(ctx context.Context, method, path string, req any, fil
 	}
 	ctx = WithValueCallOption(ctx, settings)
 	r := c.cc.R().SetContext(ctx).
-		SetOutputFileName(filename)
+		SetResponseSaveFileName(filename)
 	if in != nil {
 		reqBody, err := c.codec.Encode(settings.contentType, in)
 		if err != nil {
@@ -248,7 +248,7 @@ func (c *Client) Download(ctx context.Context, method, path string, req any, fil
 	defer func() {
 		_ = resp.RawResponse.Body.Close()
 	}()
-	if resp.IsError() {
+	if resp.IsStatusFailure() {
 		return &ReplyError{
 			Code:   resp.StatusCode(),
 			Body:   resp.Bytes(),
